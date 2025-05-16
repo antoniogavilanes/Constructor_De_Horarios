@@ -1,0 +1,27 @@
+@startuml
+
+class Profesor {
+}
+
+class Asignatura {
+}
+
+class Grado {
+}
+
+class Curso {
+}
+
+class Semestre {
+}
+
+class Usuario {
+}
+
+Profesor "*" *--* "*" Asignatura : imparte >
+
+Grado "1" *-- "*" Curso : contiene >
+Curso "1" *--o "2" Semestre : tiene >
+Semestre "1" *-- "*" Asignatura : incluye >
+
+@enduml
