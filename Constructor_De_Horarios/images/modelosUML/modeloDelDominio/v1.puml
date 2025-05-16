@@ -1,0 +1,42 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Profesor {
+}
+
+abstract class Asignatura {
+}
+
+class AsignaturaObligatoria extends Asignatura {
+}
+
+class AsignaturaOptativa extends Asignatura {
+}
+
+class Grado {
+}
+
+class Curso {
+}
+
+class Semestre {
+}
+
+class Horario {
+}
+
+' ==== RELACIONES ====
+
+Profesor "*" *--* "*" Asignatura : imparte >
+
+Grado "1" *-- "*" Curso : contiene >
+Curso "1" *--o "2" Semestre : tiene >
+Semestre "1" *-- "*" Asignatura : incluye >
+
+Horario "1" --> "1" Grado : para >
+Horario ..> Profesor
+Horario ..> Curso
+Horario ..> Semestre
+Horario "1" --> "*" Asignatura
+
+@enduml
