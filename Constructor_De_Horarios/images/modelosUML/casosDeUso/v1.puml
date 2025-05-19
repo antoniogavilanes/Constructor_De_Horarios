@@ -1,0 +1,24 @@
+@startuml
+skinparam actorStyle awesome
+left to right direction
+
+actor "Usuario" as Usuario
+
+rectangle Sistema {
+    usecase "Ver Grados" as CU1
+    usecase "Ver Horario" as CU2
+    usecase "Gestionar Asignaturas" as CU3
+    usecase "Detectar y Alertar Conflictos" as CU4
+    usecase "Modificar Horario" as CU5
+    usecase "Guardar Horario" as CU6
+}
+
+Usuario --> CU1
+Usuario --> CU5
+
+CU1 ..> CU2 : <<include>>
+CU5 ..> CU3 : <<include>>
+CU5 ..> CU6 : <<include>>
+CU5 ..> CU4 : <<extend>>
+
+@enduml
