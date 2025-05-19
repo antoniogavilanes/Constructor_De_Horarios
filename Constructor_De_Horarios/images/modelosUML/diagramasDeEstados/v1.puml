@@ -1,0 +1,26 @@
+@startuml
+
+state EnEdicion
+state Validando
+state Validado
+state Publicado
+state Finalizado
+state choice1 <<choice>>
+state choice2 <<choice>>
+
+[*] --> EnEdicion
+
+EnEdicion --> Validando : Validar horario
+Validando --> choice1
+choice1 --> EnEdicion : Error encontrado
+choice1 --> Validado : Sin conflictos
+
+Validado --> Publicado : Publicar horario
+Publicado --> choice2
+
+choice2 --> EnEdicion : Modificar / Reactivar
+choice2 --> Finalizado : Cierre definitivo
+
+Finalizado --> [*]
+
+@enduml

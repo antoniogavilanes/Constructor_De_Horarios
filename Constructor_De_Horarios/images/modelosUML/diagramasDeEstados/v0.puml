@@ -1,0 +1,13 @@
+@startuml
+[*] --> EnEdicion
+
+EnEdicion --> Validando
+Validando --> EnEdicion
+Validando --> Validado
+
+Validado --> Publicado
+Publicado --> Finalizado
+
+Finalizado --> EnEdicion
+
+@enduml

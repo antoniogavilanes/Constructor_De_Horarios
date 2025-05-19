@@ -1,28 +1,33 @@
 @startuml
-skinparam classAttributeIconSize 0
 
-class Profesor {
+rectangle Sistema {
+
+    class Profesor {
+    }
+
+    abstract class Asignatura {
+    }
+
+    class AsignaturaObligatoria extends Asignatura {
+    }
+
+    class AsignaturaOptativa extends Asignatura {
+    }
+
+    class Grado {
+    }
+
+    class Curso {
+    }
+
+    class Semestre {
+    }
+
+    class Horario {
+    }
 }
 
-abstract class Asignatura {
-}
-
-class AsignaturaObligatoria extends Asignatura {
-}
-
-class AsignaturaOptativa extends Asignatura {
-}
-
-class Grado {
-}
-
-class Curso {
-}
-
-class Semestre {
-}
-
-class Horario {
+class Usuario {
 }
 
 ' ==== RELACIONES ====
@@ -38,5 +43,7 @@ Horario ..> Profesor
 Horario ..> Curso
 Horario ..> Semestre
 Horario "1" --> "*" Asignatura
+
+Usuario ..> Horario : gestiona >
 
 @enduml
