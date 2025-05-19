@@ -1,0 +1,16 @@
+@startuml
+skinparam actorStyle awesome
+left to right direction
+
+actor "Usuario" as Usuario
+
+rectangle Sistema {
+    usecase "Ver Horario"
+    usecase "Ver Grados"
+    usecase "Gestionar Asignaturas"
+    usecase "Detectar y Alertar Conflictos"
+    usecase "Modificar Horario"
+    usecase "Guardar Horario"
+}
+
+@enduml
