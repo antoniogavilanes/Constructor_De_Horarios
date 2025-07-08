@@ -1,0 +1,17 @@
+@startuml
+hide empty description
+
+[*] --> ConsultarGrados
+note on link
+    Usuario accede a la lista de grados disponibles
+end note
+
+state ConsultarGrados {
+    [*] --> MostrarListaGrados
+    note right
+      El sistema despliega todos los grados académicos
+    end note
+    MostrarListaGrados --> [*]
+}
+
+@enduml

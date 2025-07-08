@@ -32,7 +32,7 @@ class Usuario {
 
 ' ==== RELACIONES ====
 
-Profesor "*" *--* "*" Asignatura : imparte >
+Profesor "*" -- "*" Asignatura : imparte >
 
 Grado "1" *-- "*" Curso : contiene >
 Curso "1" *--o "2" Semestre : tiene >

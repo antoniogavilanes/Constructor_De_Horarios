@@ -1,0 +1,33 @@
+@startuml
+hide empty description
+
+[*] --> ConsultarGrados
+note on link
+    Usuario accede a la lista de grados disponibles
+end note
+
+state ConsultarGrados {
+    [*] --> MostrarListaGrados
+    note right
+      El sistema despliega todos los grados académicos
+    end note
+    MostrarListaGrados --> SeleccionarGrado
+    note on link
+      Usuario selecciona un grado para ver horarios
+    end note
+}
+
+SeleccionarGrado --> ConsultarHorarios
+note on link
+    Usuario quiere revisar horarios del grado seleccionado
+end note
+
+state ConsultarHorarios {
+    [*] --> MostrarHorarios
+    note right
+      El sistema muestra los horarios asociados al grado
+    end note
+    MostrarHorarios --> [*]
+}
+
+@enduml
