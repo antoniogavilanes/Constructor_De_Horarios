@@ -1,0 +1,35 @@
+@startuml
+
+hide empty description
+
+state Creado
+state EnEdicion
+state EnValidacion
+state Validado
+state Publicado
+state Modificado
+state Cerrado
+state decision1 <<choice>>
+
+[*] --> Creado
+
+Creado --> EnEdicion : crearHorario
+
+EnEdicion --> EnValidacion : validarHorario
+
+EnValidacion --> decision1
+
+decision1 --> EnEdicion : [conflictos detectados]
+decision1 --> Validado : [sin conflictos]
+
+Validado --> Publicado : publicarHorario
+
+Publicado --> Modificado : modificarHorario
+
+Modificado --> EnEdicion : editarCambios
+
+Publicado --> Cerrado : cerrarHorario
+
+Cerrado --> [*]
+
+@enduml

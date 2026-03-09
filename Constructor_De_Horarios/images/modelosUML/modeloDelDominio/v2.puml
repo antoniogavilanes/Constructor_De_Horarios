@@ -1,0 +1,53 @@
+@startuml
+
+class OrdenacionAcademica
+
+class Horario
+
+class SesionDocente
+
+class Examen
+
+class Grado
+
+class Asignatura
+
+class Profesor
+
+class Alumno
+
+class Aula
+
+class ReservaAula
+
+class Incidencia
+
+class Semestre
+
+
+OrdenacionAcademica --> Horario : gestiona
+OrdenacionAcademica --> Examen : organiza
+OrdenacionAcademica --> Incidencia : atiende
+OrdenacionAcademica --> ReservaAula : realiza
+
+Horario "1" *-- "*" SesionDocente : contiene
+
+SesionDocente "*" --> "1" Asignatura : corresponde
+SesionDocente "*" --> "1" Profesor : imparte
+SesionDocente "*" --> "1" Aula : seRealizaEn
+
+Grado "1" o-- "*" Asignatura : incluye
+Grado "1" o-- "*" Alumno : tiene
+
+Examen "*" --> "1" Asignatura : evalua
+Examen "*" --> "1" Aula : seRealizaEn
+
+ReservaAula "*" --> "1" Aula : reserva
+
+Incidencia "*" --> "1" Profesor : reportadaPor
+Incidencia "*" --> "1" Alumno : reportadaPor
+
+Horario "*" --> "1" Semestre : perteneceA
+Examen "*" --> "1" Semestre : perteneceA
+
+@enduml
