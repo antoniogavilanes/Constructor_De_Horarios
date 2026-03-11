@@ -1,0 +1,58 @@
+@startuml
+
+left to right direction
+skinparam packageStyle rectangle
+
+class OrdenacionAcademica
+
+package Horarios{
+
+    class Horario
+    class SesionDocente
+    class Asignatura
+    class Grado
+    class Semestre
+
+}
+
+package Incidencias{
+    class Alumno
+    class Profesor
+    class Incidencia
+}
+
+package Reservas{
+    class ReservaAula
+    class Examen
+    class Aula
+}
+
+
+OrdenacionAcademica o-down.. Horario : gestiona
+Horario "1" *-- "*" SesionDocente : contiene
+Horario "*" -right..> "1" Semestre : perteneceA
+
+
+Asignatura "1" *-left-- SesionDocente : corresponde
+Profesor "1" *-up-- SesionDocente : imparte
+Aula "1" *-u-- SesionDocente : seRealizaEn
+
+
+Grado "1" o-- "*" Asignatura : incluye
+Grado "1" o-- "*" Alumno : tiene
+
+
+OrdenacionAcademica o-down.. Examen : organiza
+OrdenacionAcademica o-down..> ReservaAula : gestiona
+
+Asignatura "1" *-left- "*" Examen : evalua
+Examen "*" -down-> "1" Aula : seRealizaEn
+
+ReservaAula "*" -up-> "1" Aula : reserva
+
+
+OrdenacionAcademica -right.. Incidencia : atiende
+Profesor "1" -left-> "*" Incidencia : reportadaPor
+Alumno "1" -down-> "*" Incidencia : reportadaPor
+
+@enduml
