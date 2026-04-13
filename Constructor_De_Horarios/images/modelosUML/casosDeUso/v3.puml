@@ -1,0 +1,59 @@
+@startuml
+
+actor "Administrador Académico" as Admin
+actor "Profesor" as Profesor
+
+rectangle "Sistema de Construcción de Horarios" {
+
+    ' ================= CREACIÓN =================
+    (Crear Horario) as CH
+    (Añadir Sesión Docente) as ASD
+    (Modificar Sesión Docente) as MSD
+    (Eliminar Sesión Docente) as ESD
+
+    ' ================= ASIGNACIÓN =================
+    (Asignar Asignatura) as AA
+    (Asignar Profesor) as AP
+    (Asignar Aula) as AAu
+
+    ' ================= VALIDACIÓN =================
+    (Detectar Conflictos) as DC
+    (Validar Horario) as VH
+    (Publicar Horario) as PH
+
+    ' ================= CONSULTA =================
+    (Consultar Horario) as CoH
+
+}
+
+' =====================================================
+' RELACIONES PRINCIPALES (ADMIN)
+' =====================================================
+Admin --> CH
+Admin --> ASD
+Admin --> MSD
+Admin --> ESD
+Admin --> VH
+Admin --> PH
+Admin --> CoH
+
+' Profesor solo consulta
+Profesor --> CoH
+
+' =====================================================
+' DESCOMPOSICIÓN DE SESIÓN (ORDENADO)
+' =====================================================
+ASD ..> AA : <<include>>
+ASD ..> AP : <<include>>
+ASD ..> AAu : <<include>>
+
+MSD ..> AA : <<include>>
+MSD ..> AP : <<include>>
+MSD ..> AAu : <<include>>
+
+' =====================================================
+' VALIDACIÓN (BLOQUE CLARO)
+' =====================================================
+VH ..> DC : <<include>>
+
+@enduml

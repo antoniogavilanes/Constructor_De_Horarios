@@ -1,0 +1,39 @@
+@startuml
+
+object OrdenacionAcademica
+
+package Horarios {
+    
+    object Horario2025
+    object Sesion1
+    object ProfesorJuan
+    object Aula101
+}
+
+package Incidencias {
+    object Incidencia1
+    object AlumnoPedro
+}
+
+package Reservas {
+    object Reserva1
+    object Examen1
+}
+
+OrdenacionAcademica -- Horario2025
+OrdenacionAcademica -- Reserva1
+OrdenacionAcademica -- Examen1
+OrdenacionAcademica -- Incidencia1
+
+Horario2025 -- Sesion1
+Sesion1 -- ProfesorJuan
+Sesion1 -- Aula101
+
+Incidencia1 -- AlumnoPedro
+
+Reserva1 -- Aula101
+Examen1 -- Aula101
+
+@enduml
+
+@enduml

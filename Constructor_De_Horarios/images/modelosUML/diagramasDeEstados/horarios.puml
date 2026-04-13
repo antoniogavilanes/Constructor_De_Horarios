@@ -1,0 +1,18 @@
+@startuml
+
+[*] --> Borrador
+
+Borrador --> EnConstruccion : crear
+
+EnConstruccion --> decision_validacion <<choice>>
+
+decision_validacion --> Validado : sin conflictos
+decision_validacion --> EnConstruccion : con conflictos
+
+Validado --> decision_publicacion <<choice>>
+
+decision_publicacion --> Publicado : aprobado
+decision_publicacion --> EnConstruccion : requiere cambios
+
+Publicado --> [*]
+@enduml

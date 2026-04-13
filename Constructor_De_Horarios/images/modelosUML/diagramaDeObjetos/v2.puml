@@ -1,0 +1,53 @@
+@startuml
+
+left to right direction
+skinparam packageStyle rectangle
+
+object OrdenacionAcademica
+
+package Horarios{
+
+    object "Horario Grado Informatica 2025" as Horario
+    object "Sesion Programacion Lunes 10:15h" as SesionDocente
+    object "Asignatura Programacion" as Asignatura
+    object "Grado Ingenieria Informatica" as Grado
+    object "Semestre 1" as Semestre
+
+}
+
+package Incidencias{
+    object "Alumno Antonio Gavilanes" as Alumno
+    object "Profesor Manuel Masias" as Profesor
+    object "Incidencia Aula No Disponible" as Incidencia
+}
+
+package Reservas{
+    object "Reserva Aula 2 6 Lunes 10:15h" as Reserva
+    object "Examen Convocatoria Programacion" as Examen
+    object "Aula -2.6" as Aula
+}
+
+OrdenacionAcademica -- Horario
+OrdenacionAcademica -- Examen
+OrdenacionAcademica -- Reserva
+OrdenacionAcademica -- Incidencia
+
+Horario -- SesionDocente
+Horario -- Semestre
+
+SesionDocente -- Asignatura
+SesionDocente -- Profesor
+SesionDocente -- Aula
+
+Grado -- Asignatura
+Grado -- Alumno
+
+Examen -- Asignatura
+Examen -- Aula
+
+Reserva -- Aula
+
+Incidencia -- Alumno
+Incidencia -- Profesor
+
+@enduml

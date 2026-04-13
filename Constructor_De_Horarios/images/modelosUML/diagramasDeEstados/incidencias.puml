@@ -1,0 +1,19 @@
+@startuml
+
+[*] --> Creada
+
+Creada --> EnRevision : registrar
+
+EnRevision --> Validacion <<choice>>
+
+Validacion --> EnProceso : valida incidencia
+Validacion --> Rechazada : no procede
+
+EnProceso --> Resolucion <<choice>>
+
+Resolucion --> Resuelta : solucion aplicada
+Resolucion --> Rechazada : no aplicable
+
+Resuelta --> [*]
+Rechazada --> [*]
+@enduml

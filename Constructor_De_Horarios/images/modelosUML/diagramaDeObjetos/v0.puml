@@ -1,0 +1,42 @@
+@startuml
+
+object OrdenacionAcademica
+
+object Horario2025
+object Semestre1
+
+object Sesion1
+object Sesion2
+
+object AsignaturaProg
+object AsignaturaBD
+
+object ProfesorJuan
+object ProfesorAna
+
+object Aula101
+object Aula202
+
+object GradoInformatica
+
+object AlumnoPedro
+
+OrdenacionAcademica -- Horario2025
+
+Horario2025 -- Sesion1
+Horario2025 -- Sesion2
+Horario2025 -- Semestre1
+
+Sesion1 -- AsignaturaProg
+Sesion1 -- ProfesorJuan
+Sesion1 -- Aula101
+
+Sesion2 -- AsignaturaBD
+Sesion2 -- ProfesorAna
+Sesion2 -- Aula202
+
+GradoInformatica -- AsignaturaProg
+GradoInformatica -- AsignaturaBD
+GradoInformatica -- AlumnoPedro
+
+@enduml
