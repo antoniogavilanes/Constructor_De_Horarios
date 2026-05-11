@@ -1,0 +1,206 @@
+@startuml
+
+skinparam style strictuml
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+
+left to right direction
+
+' =====================================================
+' SUBSISTEMA: GESTIÓN DE HORARIOS
+' =====================================================
+
+package "Gestión de Horarios" {
+
+    ' ================= VISTA =================
+
+    class VistaHorario {
+        +mostrarHorario()
+        +mostrarConflictos()
+    }
+
+    ' ================= CONTROL =================
+
+    class ControladorHorario {
+        +crearHorario()
+        +modificarHorario()
+        +publicarHorario()
+    }
+
+    class ValidadorHorario {
+        +validarHorario()
+    }
+
+    class GestorConflictos {
+        +detectarConflictos()
+    }
+
+    ' ================= MODELO =================
+
+    class Horario {
+        -estado
+        -fechaCreacion
+
+        +agregarSesion()
+        +validar()
+        +publicar()
+    }
+
+    class SesionDocente {
+        -dia
+        -horaInicio
+        -horaFin
+    }
+
+    class Asignatura {
+        -nombre
+        -codigo
+    }
+
+    class Profesor {
+        -nombre
+        -departamento
+    }
+
+    class Aula {
+        -codigo
+        -capacidad
+    }
+
+    class Semestre {
+        -periodo
+    }
+
+    ' ================= RELACIONES =================
+
+    VistaHorario --> ControladorHorario
+
+    ControladorHorario --> Horario
+    ControladorHorario --> ValidadorHorario
+
+    ValidadorHorario --> GestorConflictos
+
+    GestorConflictos --> Horario
+
+    Horario "1" *-- "*" SesionDocente
+
+    SesionDocente --> Asignatura
+    SesionDocente --> Profesor
+    SesionDocente --> Aula
+
+    Horario --> Semestre
+}
+
+' =====================================================
+' SUBSISTEMA: GESTIÓN DE RESERVAS
+' =====================================================
+
+package "Gestión de Reservas" {
+
+    ' ================= VISTA =================
+
+    class VistaReserva {
+        +mostrarReserva()
+    }
+
+    ' ================= CONTROL =================
+
+    class ControladorReserva {
+        +crearReserva()
+        +cancelarReserva()
+    }
+
+    ' ================= MODELO =================
+
+    class ReservaAula {
+        -fecha
+        -estado
+    }
+
+    class Examen {
+        -fecha
+        -tipo
+    }
+
+    class AulaReserva {
+        -codigo
+        -capacidad
+    }
+
+    class AsignaturaReserva {
+        -nombre
+        -codigo
+    }
+
+    ' ================= RELACIONES =================
+
+    VistaReserva --> ControladorReserva
+
+    ControladorReserva --> ReservaAula
+
+    ReservaAula --> AulaReserva
+
+    Examen --> AulaReserva
+    Examen --> AsignaturaReserva
+}
+
+' =====================================================
+' SUBSISTEMA: GESTIÓN DE INCIDENCIAS
+' =====================================================
+
+package "Gestión de Incidencias" {
+
+    ' ================= VISTA =================
+
+    class VistaIncidencia {
+        +mostrarIncidencia()
+    }
+
+    ' ================= CONTROL =================
+
+    class ControladorIncidencia {
+        +registrarIncidencia()
+        +resolverIncidencia()
+    }
+
+    ' ================= MODELO =================
+
+    class Incidencia {
+        -descripcion
+        -estado
+    }
+
+    class Alumno {
+        -nombre
+        -matricula
+    }
+
+    class ProfesorIncidencia {
+        -nombre
+        -departamento
+    }
+
+    class Grado {
+        -nombre
+    }
+
+    class AsignaturaIncidencia {
+        -nombre
+        -codigo
+    }
+
+    ' ================= RELACIONES =================
+
+    VistaIncidencia --> ControladorIncidencia
+
+    ControladorIncidencia --> Incidencia
+
+    Incidencia --> Alumno
+    Incidencia --> ProfesorIncidencia
+
+    Grado o-- Alumno
+    Grado o-- AsignaturaIncidencia
+}
+
+@enduml

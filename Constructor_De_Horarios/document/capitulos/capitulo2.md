@@ -1,4 +1,4 @@
-# 📘 Capítulo 2 – Análisis del Sistema y Modelado del Dominio
+# Capítulo 2 – Análisis del Sistema y Modelado del Dominio
 
 ## 1. Introducción
 
