@@ -2,17 +2,12 @@
 
 [*] --> Borrador
 
-Borrador --> EnConstruccion : crear
+Borrador --> Validado : sin conflictos
 
-EnConstruccion --> decision_validacion <<choice>>
+Borrador --> Borrador : con conflictos
 
-decision_validacion --> Validado : sin conflictos
-decision_validacion --> EnConstruccion : con conflictos
-
-Validado --> decision_publicacion <<choice>>
-
-decision_publicacion --> Publicado : aprobado
-decision_publicacion --> EnConstruccion : requiere cambios
+Validado --> Publicado
+Publicado --> Borrador : requiere cambios
 
 Publicado --> [*]
 @enduml

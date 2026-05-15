@@ -2,21 +2,18 @@
 
 [*] --> Solicitada
 
-Solicitada --> PendienteAprobacion : enviar_solicitud
+Solicitada --> Revision <<choice>>
 
-PendienteAprobacion --> decision_aula <<choice>>
+Revision --> Aprobada : aula disponible
+Revision --> Rechazada : aula ocupada
 
-decision_aula --> Aprobada : aula disponible
-decision_aula --> Rechazada : aula ocupada
-
-Aprobada --> decision_finalizacion <<choice>>
-
-decision_finalizacion --> Finalizada : uso completado
-decision_finalizacion --> Cancelada : cancelada por usuario
+Aprobada --> Finalizada : uso completado
+Aprobada --> Cancelada : cancelada por usuario
 
 Solicitada --> Cancelada : cancelación anticipada
 
 Finalizada --> [*]
 Cancelada --> [*]
+Rechazada --> [*]
 
 @enduml
