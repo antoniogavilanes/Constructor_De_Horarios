@@ -1,0 +1,87 @@
+@startuml
+
+left to right direction
+
+hide empty description
+skinparam shadowing false
+skinparam state {
+    BackgroundColor #F5F5F5
+    BorderColor #444
+    FontSize 12
+}
+
+[*] --> SESION_CERRADA
+
+SESION_CERRADA --> SISTEMA_DISPONIBLE : iniciarSesion()
+SISTEMA_DISPONIBLE --> SESION_CERRADA : cerrarSesion()
+
+' =========================
+' ASIGNATURAS
+' =========================
+
+SISTEMA_DISPONIBLE --> ASIGNATURAS_ABIERTO : abrirAsignaturas()
+ASIGNATURAS_ABIERTO --> SISTEMA_DISPONIBLE : completarGestion()
+
+ASIGNATURAS_ABIERTO --> ASIGNATURA_ABIERTA : crearAsignatura()
+ASIGNATURA_ABIERTA --> ASIGNATURAS_ABIERTO : guardar()
+ASIGNATURAS_ABIERTO --> ASIGNATURAS_ABIERTO : eliminarAsignatura()
+ASIGNATURA_ABIERTA --> ASIGNATURA_ABIERTA : editarAsignatura()
+
+' =========================
+' PROFESORES
+' =========================
+
+SISTEMA_DISPONIBLE --> PROFESORES_ABIERTO : abrirProfesores()
+PROFESORES_ABIERTO --> SISTEMA_DISPONIBLE : completarGestion()
+
+PROFESORES_ABIERTO --> PROFESOR_ABIERTO : crearProfesor()
+PROFESOR_ABIERTO --> PROFESORES_ABIERTO : guardar()
+PROFESORES_ABIERTO --> PROFESORES_ABIERTO : eliminarProfesor()
+PROFESOR_ABIERTO --> PROFESOR_ABIERTO : editarProfesor()
+
+' =========================
+' GRADOS
+' =========================
+
+SISTEMA_DISPONIBLE --> GRADOS_ABIERTO : abrirGrados()
+GRADOS_ABIERTO --> SISTEMA_DISPONIBLE : completarGestion()
+
+GRADOS_ABIERTO --> GRADO_ABIERTO : crearGrado()
+GRADO_ABIERTO --> GRADOS_ABIERTO : guardar()
+GRADOS_ABIERTO --> GRADOS_ABIERTO : eliminarGrado()
+GRADO_ABIERTO --> GRADO_ABIERTO : editarGrado()
+
+' =========================
+' AULAS
+' =========================
+
+SISTEMA_DISPONIBLE --> AULAS_ABIERTO : abrirAulas()
+AULAS_ABIERTO --> SISTEMA_DISPONIBLE : completarGestion()
+
+AULAS_ABIERTO --> AULA_ABIERTA : crearAula()
+AULA_ABIERTA --> AULAS_ABIERTO : guardar()
+
+AULAS_ABIERTAS --> AULAS_ABIERTO : eliminarAula()
+AULA_ABIERTA --> AULA_ABIERTA : editarAula()
+
+' =========================
+' ASIGNACIONES
+' =========================
+
+SISTEMA_DISPONIBLE --> ASIGNACIONES_ABIERTAS : gestionarAsignaciones()
+ASIGNACIONES_ABIERTAS --> SISTEMA_DISPONIBLE : completarGestion()
+
+ASIGNACIONES_ABIERTAS --> ASIGNACIONES_ABIERTAS : asignarProfesorAsignatura()
+ASIGNACIONES_ABIERTAS --> ASIGNACIONES_ABIERTAS : asignarAulaAsignatura()
+
+' =========================
+' HORARIOS
+' =========================
+
+SISTEMA_DISPONIBLE --> HORARIO_GENERADO : generarHorario()
+HORARIO_GENERADO --> SISTEMA_DISPONIBLE : completarProceso()
+
+SISTEMA_DISPONIBLE --> HORARIO_ABIERTO : consultarHorario()
+HORARIO_ABIERTO --> SISTEMA_DISPONIBLE : cerrarConsulta()
+
+@enduml
