@@ -1,0 +1,19 @@
+@startuml
+' ... (mismos skinparams) ...
+state "eliminarAsignatura()" as eliminarAsignatura {
+    state " " as s1
+    
+    [*] --> s1
+    note on link
+        **Administrador** selecciona una asignatura de la lista y solicita eliminar
+    end note
+    
+    s1 --> [*]
+    note on link
+        **Sistema** solicita confirmación de eliminación
+        **Administrador** confirma y **Sistema** elimina la asignatura
+    end note
+}
+
+eliminarAsignatura --> ASIGNATURAS_ABIERTA
+@enduml

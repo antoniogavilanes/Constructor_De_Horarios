@@ -1,0 +1,46 @@
+@startuml
+
+hide empty description
+skinparam shadowing false
+skinparam state {
+    BackgroundColor #F5F5F5
+    BorderColor #444
+    FontSize 12
+}
+
+state "abrirAsignaturas()" as abrirAsignaturas {
+    state " " as s1
+    state " " as s2
+    
+    [*] --> s1
+    note on link
+        **Administrador** solicita abrir asignaturas
+    end note
+    
+    s1 --> s2
+    note on link
+        **Sistema** presenta lista de asignaturas
+        • Código, nombre, créditos y curso de cada asignatura
+        • Permite solicitar filtrar lista
+        • Permite solicitar crear asignatura nueva
+        • Permite solicitar eliminar asignatura
+        • Permite solicitar editar asignatura
+    end note
+    
+    s2 --> s2
+    note on link
+        **Administrador** solicita filtrar lista
+        **Sistema** presenta lista filtrada
+    end note
+    
+    s2 --> [*]
+    note on link
+        **Administrador** solicita una de las opciones
+    end note
+}
+
+abrirAsignaturas --> ASIGNATURA_ABIERTA : crearAsignatura()
+abrirAsignaturas --> ASIGNATURA_ABIERTA : editarAsignatura()
+abrirAsignaturas --> ASIGNATURAS_ABIERTA : eliminarAsignatura()
+abrirAsignaturas --> SISTEMA_DISPONIBLE : completarGestion()
+@enduml
