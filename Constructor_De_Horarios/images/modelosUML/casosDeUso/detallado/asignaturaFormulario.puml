@@ -1,0 +1,26 @@
+@startuml
+
+skinparam shadowing false
+skinparam state {
+    BackgroundColor #F5F5F5
+    BorderColor #444
+    FontSize 12
+}
+
+state ASIGNATURA_ABIERTA {
+    [*] --> FormularioDesplegado
+    
+    note on Link
+        **Sistema** despliega formulario (vacío o precargado)
+        • Campos: Código (clave única), Nombre, Créditos, Curso
+        • Permite modificar campos
+        • Permite solicitar guardar o cancelar
+    end note
+    
+    FormularioDesplegado --> EstadoFinal : Administrador solicita guardar o cancelar
+    EstadoFinal --> [*]
+}
+
+ASIGNATURA_ABIERTA --> ASIGNATURAS_ABIERTO : guardar()
+
+@enduml

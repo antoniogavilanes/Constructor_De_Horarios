@@ -1,0 +1,26 @@
+@startuml
+
+skinparam shadowing false
+skinparam state {
+    BackgroundColor #F5F5F5
+    BorderColor #444
+    FontSize 12
+}
+
+state AULA_ABIERTA {
+    [*] --> FormularioDesplegado
+    
+    note on Link
+        **Sistema** despliega formulario de aula física
+        • Campos: Código, Capacidad
+        • Permite modificar campos
+        • Permite solicitar guardar o cancelar
+    end note
+    
+    FormularioDesplegado --> EstadoFinal : Administrador solicita guardar o cancelar
+    EstadoFinal --> [*]
+}
+
+AULA_ABIERTA --> AULAS_ABIERTO : guardar()
+
+@enduml

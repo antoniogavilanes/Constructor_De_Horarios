@@ -1,0 +1,32 @@
+@startuml
+
+skinparam shadowing false
+skinparam state {
+    BackgroundColor #F5F5F5
+    BorderColor #444
+    FontSize 12
+}
+
+state "abrirProfesores()" as abrirProf {
+    [*] --> EstadoInicial
+    EstadoInicial --> ListaPresentada : Administrador solicita abrir profesores
+    
+    note on Link
+        **Sistema** presenta catálogo de docentes
+        • DNI, nombre, apellidos, teléfono, correo de cada profesor
+        • Permite solicitar filtrar lista
+        • Permite solicitar registrar profesor nuevo
+        • Permite solicitar eliminar profesor
+        • Permite solicitar editar profesor
+    end note
+    
+    ListaPresentada --> ListaPresentada : Administrador solicita filtrar lista\n**Sistema** presenta lista filtrada
+    ListaPresentada --> EstadoFinal : Administrador solicita una de las opciones
+    EstadoFinal --> [*]
+}
+
+abrirProf --> PROFESOR_ABIERTO : crearProfesor() / editarProfesor()
+abrirProf --> PROFESORES_ABIERTO : eliminarProfesor()
+abrirProf --> SISTEMA_DISPONIBLE : completarGestion()
+
+@enduml

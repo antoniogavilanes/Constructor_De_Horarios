@@ -1,0 +1,32 @@
+@startuml
+
+skinparam shadowing false
+skinparam state {
+    BackgroundColor #F5F5F5
+    BorderColor #444
+    FontSize 12
+}
+
+state "abrirAulas()" as abrirAul {
+    [*] --> EstadoInicial
+    EstadoInicial --> ListaPresentada : Administrador solicita abrir aulas
+    
+    note on Link
+        **Sistema** presenta lista de aulas físicas
+        • Código, capacidad
+        • Permite solicitar filtrar lista
+        • Permite solicitar crear aula nueva
+        • Permite solicitar eliminar aula
+        • Permite solicitar editar aula
+    end note
+    
+    ListaPresentada --> ListaPresentada : Administrador solicita filtrar lista\n**Sistema** presenta lista filtrada
+    ListaPresentada --> EstadoFinal : Administrador solicita una de las opciones
+    EstadoFinal --> [*]
+}
+
+abrirAul --> AULA_ABIERTA : crearAula() / editarAula()
+abrirAul --> AULAS_ABIERTO : eliminarAula()
+abrirAul --> SISTEMA_DISPONIBLE : completarGestion()
+
+@enduml

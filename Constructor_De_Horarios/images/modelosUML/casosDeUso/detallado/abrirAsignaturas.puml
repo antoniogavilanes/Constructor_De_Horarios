@@ -1,6 +1,5 @@
 @startuml
 
-hide empty description
 skinparam shadowing false
 skinparam state {
     BackgroundColor #F5F5F5
@@ -8,39 +7,26 @@ skinparam state {
     FontSize 12
 }
 
-state "abrirAsignaturas()" as abrirAsignaturas {
-    state " " as s1
-    state " " as s2
+state "abrirAsignaturas()" as abrirAsig {
+    [*] --> EstadoInicial
+    EstadoInicial --> ListaPresentada : Administrador solicita abrir asignaturas
     
-    [*] --> s1
-    note on link
-        **Administrador** solicita abrir asignaturas
-    end note
-    
-    s1 --> s2
-    note on link
+    note on Link
         **Sistema** presenta lista de asignaturas
-        • Código, nombre, créditos y curso de cada asignatura
+        • Código, nombre, créditos, curso de cada asignatura
         • Permite solicitar filtrar lista
         • Permite solicitar crear asignatura nueva
         • Permite solicitar eliminar asignatura
         • Permite solicitar editar asignatura
     end note
     
-    s2 --> s2
-    note on link
-        **Administrador** solicita filtrar lista
-        **Sistema** presenta lista filtrada
-    end note
-    
-    s2 --> [*]
-    note on link
-        **Administrador** solicita una de las opciones
-    end note
+    ListaPresentada --> ListaPresentada : Administrador solicita filtrar lista\n**Sistema** presenta lista filtrada
+    ListaPresentada --> EstadoFinal : Administrador solicita una de las opciones
+    EstadoFinal --> [*]
 }
 
-abrirAsignaturas --> ASIGNATURA_ABIERTA : crearAsignatura()
-abrirAsignaturas --> ASIGNATURA_ABIERTA : editarAsignatura()
-abrirAsignaturas --> ASIGNATURAS_ABIERTA : eliminarAsignatura()
-abrirAsignaturas --> SISTEMA_DISPONIBLE : completarGestion()
+abrirAsig --> ASIGNATURA_ABIERTA : crearAsignatura() / editarAsignatura()
+abrirAsig --> ASIGNATURAS_ABIERTO : eliminarAsignatura()
+abrirAsig --> SISTEMA_DISPONIBLE : completarGestion()
+
 @enduml

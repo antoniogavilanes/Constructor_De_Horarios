@@ -1,0 +1,29 @@
+@startuml
+
+skinparam shadowing false
+skinparam state {
+    BackgroundColor #F5F5F5
+    BorderColor #444
+    FontSize 12
+}
+
+state "generarHorario()" as genHor {
+    [*] --> MatrizInteractivaDesplegada
+    
+    note on Link
+        **Sistema** dibuja el entorno interactivo (Días y Horas)
+        • Renderiza tarjetas laterales con asignaturas aptas para planificar
+        • Habilita las zonas de soltar (dropzones) en la cuadrícula horaria
+        • Permite arrastrar una tarjeta y soltarla sobre una franja horaria
+    end note
+    
+    MatrizInteractivaDesplegada --> MatrizInteractivaDesplegada : Administrador arrastra y suelta tarjeta (posicionarAsignatura())\n**Sistema** ejecuta algoritmo de colisión y notifica el resultado [OK / Conflicto]
+    
+    MatrizInteractivaDesplegada --> EstadoFinal : Administrador solicita guardar y finalizar
+    EstadoFinal --> [*]
+}
+
+genHor --> MATRIZ_HORARIO_ACTIVA : posicionarAsignatura()
+genHor --> SISTEMA_DISPONIBLE : completarProceso()
+
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+
+skinparam shadowing false
+skinparam state {
+    BackgroundColor #F5F5F5
+    BorderColor #444
+    FontSize 12
+}
+
+state PROFESOR_ABIERTO {
+    [*] --> FormularioDesplegado
+    
+    note on Link
+        **Sistema** despliega formulario de ficha docente
+        • Campos: DNI, Nombre, Apellidos, Teléfono, Correo
+        • Permite modificar campos
+        • Permite solicitar guardar o cancelar
+    end note
+    
+    FormularioDesplegado --> EstadoFinal : Administrador solicita guardar o cancelar
+    EstadoFinal --> [*]
+}
+
+PROFESOR_ABIERTO --> PROFESORES_ABIERTO : guardar()
+
+@enduml

@@ -1,0 +1,27 @@
+@startuml
+
+skinparam shadowing false
+skinparam state {
+    BackgroundColor #F5F5F5
+    BorderColor #444
+    FontSize 12
+}
+
+state "consultarHorario()" as consHor {
+    [*] --> VistaMatrizDesplegada
+    
+    note on Link
+        **Sistema** proyecta la cuadrícula horaria final consolidada
+        • Muestra la distribución por horas, días, códigos de aula y Nombre de profesores
+        • Habilita filtros de consulta selectivos (por Aula o por Profesor)
+    end note
+    
+    VistaMatrizDesplegada --> VistaMatrizDesplegada : Administrador cambia filtros\n**Sistema** actualiza la cuadrícula visualmente
+    VistaMatrizDesplegada --> EstadoFinal : Administrador solicita cerrar consulta
+    EstadoFinal --> [*]
+}
+
+consHor --> HORARIO_ABIERTO : cerrarConsulta()
+HORARIO_ABIERTO --> SISTEMA_DISPONIBLE
+
+@enduml

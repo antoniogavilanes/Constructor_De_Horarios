@@ -1,0 +1,29 @@
+@startuml
+
+skinparam shadowing false
+skinparam state {
+    BackgroundColor #F5F5F5
+    BorderColor #444
+    FontSize 12
+}
+
+state "gestionarAsignaciones()" as gestAsig {
+    [*] --> PanelDesplegado
+    
+    note on Link
+        **Sistema** consolida el panel de asignaciones pendientes
+        • Presenta asignaturas que carecen de Profesor o Aula asignada
+        • Permite seleccionar una asignatura para cruzar recursos
+        • Permite solicitar asignar profesor a la asignatura seleccionada
+        • Permite solicitar asignar aula a la asignatura seleccionada
+    end note
+    
+    PanelDesplegado --> PanelDesplegado : Administrador asocia Profesor (vía DNI)\no asocia Aula (vía Código) a la asignatura
+    PanelDesplegado --> EstadoFinal : Administrador solicita completar gestión
+    EstadoFinal --> [*]
+}
+
+gestAsig --> ASIGNACIONES_ABIERTAS : asignarProfesorAsignatura() / asignarAulaAsignatura()
+gestAsig --> SISTEMA_DISPONIBLE : completarGestion()
+
+@enduml

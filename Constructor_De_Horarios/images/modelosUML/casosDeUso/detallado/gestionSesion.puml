@@ -1,0 +1,26 @@
+@startuml
+
+skinparam shadowing false
+skinparam state {
+    BackgroundColor #F5F5F5
+    BorderColor #444
+    FontSize 12
+}
+
+state "GestionDeSesion" as sesion {
+    [*] --> SESION_CERRADA
+    
+    SESION_CERRADA --> SISTEMA_DISPONIBLE : iniciarSesion()
+    note on Link
+        **Administrador** ingresa credenciales
+        **Sistema** valida token y concede acceso
+    end note
+    
+    SISTEMA_DISPONIBLE --> SESION_CERRADA : cerrarSesion()
+    note on Link
+        **Administrador** solicita salir
+        **Sistema** destruye el estado de sesión activo
+    end note
+}
+
+@enduml

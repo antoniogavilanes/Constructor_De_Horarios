@@ -1,0 +1,24 @@
+@startuml
+skinparam shadowing false
+skinparam state {
+    BackgroundColor #F5F5F5
+    BorderColor #444
+    FontSize 12
+}
+
+state GRADO_ABIERTO {
+    [*] --> FormularioDesplegado
+    
+    note on Link
+        **Sistema** despliega formulario de plan de estudios
+        • Campos: Código, Nombre
+        • Permite modificar campos
+        • Permite solicitar guardar o cancelar
+    end note
+    
+    FormularioDesplegado --> EstadoFinal : Administrador solicita guardar o cancelar
+    EstadoFinal --> [*]
+}
+
+GRADO_ABIERTO --> GRADOS_ABIERTO : guardar()
+@enduml

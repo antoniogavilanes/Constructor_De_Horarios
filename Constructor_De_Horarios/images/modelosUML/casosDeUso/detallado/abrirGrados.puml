@@ -1,0 +1,32 @@
+@startuml
+
+skinparam shadowing false
+skinparam state {
+    BackgroundColor #F5F5F5
+    BorderColor #444
+    FontSize 12
+}
+
+state "abrirGrados()" as abrirGrad {
+    [*] --> EstadoInicial
+    EstadoInicial --> ListaPresentada : Administrador solicita abrir grados
+    
+    note on Link
+        **Sistema** presenta lista de titulaciones
+        • Código y nombre de cada grado
+        • Permite solicitar filtrar lista
+        • Permite solicitar crear grado nuevo
+        • Permite solicitar eliminar grado
+        • Permite solicitar editar grado
+    end note
+    
+    ListaPresentada --> ListaPresentada : Administrador solicita filtrar lista\n**Sistema** presenta lista filtrada
+    ListaPresentada --> EstadoFinal : Administrador solicita una de las opciones
+    EstadoFinal --> [*]
+}
+
+abrirGrad --> GRADO_ABIERTO : crearGrado() / editarGrado()
+abrirGrad --> GRADOS_ABIERTO : eliminarGrado()
+abrirGrad --> SISTEMA_DISPONIBLE : completarGestion()
+
+@enduml

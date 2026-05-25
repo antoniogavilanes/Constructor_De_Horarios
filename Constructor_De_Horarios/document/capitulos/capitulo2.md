@@ -208,8 +208,8 @@ En esta parte vamos a desglosar el protocolo de diálogo interactivo entre el **
 
 | Caso de Uso Base | Caso de Uso Incluido | Atributos Involucrados | Responsabilidad del Protocolo de Diálogo |
 | :--- | :--- | :--- | :--- |
-| **abrirAulas()** |  | *Lista de aulas* | El **Sistema** proyecta la infraestructura física mostrando *Código*, nombre, capacidad de aforo y el edificio correspondiente. |
-| | `crearAula()` / `editarAula()` | *Código*, Nombre, Capacidad, Edificio | El **Administrador** cumplimenta las especificaciones técnicas del espacio áulico sobre el formulario interactivo proporcionado. |
+| **abrirAulas()** |  | *Lista de aulas* | El **Sistema** proyecta la infraestructura física mostrando *Código* y capacidad de aforo. |
+| | `crearAula()` / `editarAula()` | *Código*, Capacidad, | El **Administrador** cumplimenta las especificaciones técnicas del espacio áulico sobre el formulario interactivo proporcionado. |
 | | `eliminarAula()` | *Código* | El **Sistema** intercepta la orden de borrado de un aula para prevenir la destrucción accidental de recintos vinculados a horarios activos. |
 | | `guardar()` |  | Confirmación, guardado físico del aula y actualización del inventario en pantalla. |
 | **gestionarAsignaciones()**|  | Asignaturas pendientes | El **Sistema** presenta un panel lateral interactivo con las "tarjetas" de asignaturas que tienen profesor y aula asignada pero carecen de franja horaria. Funciona como el origen para la acción de arrastre. |
