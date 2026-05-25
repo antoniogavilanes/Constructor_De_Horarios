@@ -1,0 +1,49 @@
+@startuml
+skinparam actorStyle awesome
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+
+actor "Administrador" as admin
+
+rectangle "Sistema Constructor de Horario" {
+
+    package "Aulas" {
+        usecase "abrirAulas()" as abr_aul
+        usecase "crearAula()" as cr_aul
+        usecase "editarAula()" as edt_aul
+        usecase "eliminarAula()" as elm_aul
+        usecase "guardar()" as guardar_aul
+        
+        abr_aul ..> cr_aul : <<include>>
+        abr_aul ..> edt_aul : <<include>>
+        abr_aul ..> elm_aul : <<include>>
+        cr_aul ..> guardar_aul : <<include>>
+        edt_aul ..> guardar_aul : <<include>>
+    }
+
+    package "Horarios" {
+        usecase "gestionarAsignaciones()" as gest_asig
+        usecase "asignarProfesorAsignatura()" as asig_prof
+        usecase "asignarAulaAsignatura()" as asig_aula
+        usecase "generarHorario()" as gen_hor
+        usecase "consultarHorario()" as cons_hor
+        
+        gest_asig ..> asig_prof : <<include>>
+        gest_asig ..> asig_aula : <<include>>
+    }
+
+    package "Módulo de Sesión" {
+        usecase "iniciarSesion()" as login
+        usecase "cerrarSesion()" as logout
+    }
+}
+
+admin -down-> abr_aul
+admin -down-> gest_asig
+admin -down-> gen_hor
+admin -down-> cons_hor
+admin -down-> login
+admin -down-> logout
+
+@enduml

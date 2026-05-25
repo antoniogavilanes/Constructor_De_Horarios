@@ -1,0 +1,59 @@
+@startuml
+
+skinparam actorStyle awesome
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+actor "Administrador" as admin
+
+rectangle "Sistema Constructor de Horario" {
+
+    package "Asignaturas" {
+        usecase "abrirAsignaturas()" as abr_asig
+        usecase "crearAsignatura()" as cr_asig
+        usecase "editarAsignatura()" as edt_asig
+        usecase "eliminarAsignatura()" as elm_asig
+        usecase "guardar()" as guardar_asig
+        
+        abr_asig ..> cr_asig : <<include>>
+        abr_asig ..> edt_asig : <<include>>
+        abr_asig ..> elm_asig : <<include>>
+        cr_asig ..> guardar_asig : <<include>>
+        edt_asig ..> guardar_asig : <<include>>
+    }
+
+    package "Profesores" {
+        usecase "abrirProfesores()" as abr_prof
+        usecase "crearProfesor()" as cr_prof
+        usecase "editarProfesor()" as edt_prof
+        usecase "eliminarProfesor()" as elm_prof
+        usecase "guardar()" as guardar_prof
+        
+        abr_prof ..> cr_prof : <<include>>
+        abr_prof ..> edt_prof : <<include>>
+        abr_prof ..> elm_prof : <<include>>
+        cr_prof ..> guardar_prof : <<include>>
+        edt_prof ..> guardar_prof : <<include>>
+    }
+
+    package "Grados" {
+        usecase "abrirGrados()" as abr_grados
+        usecase "crearGrado()" as cr_grados
+        usecase "editarGrado()" as edt_grados
+        usecase "eliminarGrado()" as elm_grados
+        usecase "guardar()" as guardar_grado
+        
+        abr_grados ..> cr_grados : <<include>>
+        abr_grados ..> edt_grados : <<include>>
+        abr_grados ..> elm_grados : <<include>>
+        cr_grados ..> guardar_grado : <<include>>
+        edt_grados ..> guardar_grado : <<include>>
+    }
+}
+
+
+admin -down-> abr_asig
+admin -down-> abr_prof
+admin -down-> abr_grados
+
+@enduml
