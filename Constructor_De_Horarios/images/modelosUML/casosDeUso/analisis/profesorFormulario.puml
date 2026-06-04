@@ -1,0 +1,41 @@
+@startuml analisisProfesorFormulario
+skinparam shadowing false
+skinparam linetype polyline
+
+actor Administrador
+rectangle #CDEBA5 ":Collaboration AbrirProfesores" as ColAbrir
+
+package "crearProfesor() / editarProfesor()" {
+    rectangle #629EF9 VistaProfesor
+    rectangle #629EF9 FormularioProfesor
+    rectangle #b5bd68 ControladorProfesor
+    rectangle #F2AC4E ProfesorRepository
+    rectangle #F2AC4E Profesor
+}
+
+ColAbrir --> VistaProfesor : crearProfesor() / editarProfesor(dni)
+VistaProfesor --> FormularioProfesor : mostrarFormulario(profesor?)
+Administrador --> FormularioProfesor : rellenarCampos(dni, nombre, apellidos, telefono, correo)
+FormularioProfesor --> ControladorProfesor : guardar(datos)
+ControladorProfesor --> ProfesorRepository : verificarDniUnico(dni)
+ControladorProfesor --> Profesor : new / actualizar(dni, nombre, apellidos, telefono, correo)
+ControladorProfesor --> ProfesorRepository : guardar(profesor)
+VistaProfesor ..> ColAbrir : listarProfesores()
+
+package "eliminarProfesor()" {
+    rectangle #629EF9 VistaProfesor2
+    rectangle #629EF9 ConfirmacionProfesor
+    rectangle #b5bd68 ControladorProfesor2
+    rectangle #F2AC4E ProfesorRepository2
+}
+
+rectangle #CDEBA5 ":Collaboration AbrirProfesores" as ColAbrir2
+
+ColAbrir --> VistaProfesor2 : eliminarProfesor(nombre, apellido)
+VistaProfesor2 --> ConfirmacionProfesor : confirmarEliminacion(nombre, apellido)
+Administrador --> ConfirmacionProfesor : confirmar()
+ConfirmacionProfesor --> ControladorProfesor2 : eliminar(dni)
+ControladorProfesor2 --> ProfesorRepository2 : eliminar(dni)
+VistaProfesor2 ..> ColAbrir2 : listarProfesores()
+
+@enduml

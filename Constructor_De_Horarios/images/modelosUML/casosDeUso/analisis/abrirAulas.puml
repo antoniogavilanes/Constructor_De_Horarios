@@ -1,0 +1,32 @@
+@startuml analisisAbrirAulas
+skinparam shadowing false
+skinparam linetype polyline
+
+actor Administrador
+rectangle #CDEBA5 ":Sistema Disponible" as SD_in
+
+package "abrirAulas()" {
+    rectangle #629EF9 VistaAula
+    rectangle #b5bd68 ControladorAula
+    rectangle #F2AC4E AulaRepository
+    rectangle #F2AC4E Aula
+}
+
+rectangle #CDEBA5 ":Sistema Disponible" as SD_out
+rectangle #CDEBA5 ":Collaboration CrearAula" as ColCrear
+rectangle #CDEBA5 ":Collaboration EditarAula" as ColEditar
+rectangle #CDEBA5 ":Collaboration EliminarAula" as ColEliminar
+
+SD_in --> VistaAula : abrirAulas()
+VistaAula --> ControladorAula : listarAulas()
+ControladorAula --> AulaRepository : obtenerTodas() : List<Aula>
+AulaRepository -- Aula
+Administrador --> VistaAula : filtrar(criterio)
+VistaAula --> ControladorAula : filtrarAulas(criterio) : List<Aula>
+
+VistaAula ..> SD_out : completarGestion()
+VistaAula ..> ColCrear : crearAula()
+VistaAula ..> ColEditar : editarAula()
+VistaAula ..> ColEliminar : eliminarAula()
+
+@enduml

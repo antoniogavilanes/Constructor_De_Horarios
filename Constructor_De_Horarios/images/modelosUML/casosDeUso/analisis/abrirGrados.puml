@@ -1,0 +1,32 @@
+@startuml analisisAbrirGrados
+skinparam shadowing false
+skinparam linetype polyline
+
+actor Administrador
+rectangle #CDEBA5 ":Sistema Disponible" as SD_in
+
+package "abrirGrados()" {
+    rectangle #629EF9 VistaGrado
+    rectangle #b5bd68 ControladorGrado
+    rectangle #F2AC4E GradoRepository
+    rectangle #F2AC4E Grado
+}
+
+rectangle #CDEBA5 ":Sistema Disponible" as SD_out
+rectangle #CDEBA5 ":Collaboration CrearGrado" as ColCrear
+rectangle #CDEBA5 ":Collaboration EditarGrado" as ColEditar
+rectangle #CDEBA5 ":Collaboration EliminarGrado" as ColEliminar
+
+SD_in --> VistaGrado : abrirGrados()
+VistaGrado --> ControladorGrado : listarGrados()
+ControladorGrado --> GradoRepository : obtenerTodos() : List<Grado>
+GradoRepository -- Grado
+Administrador --> VistaGrado : filtrar(criterio)
+VistaGrado --> ControladorGrado : filtrarGrados(criterio) : List<Grado>
+
+VistaGrado ..> SD_out : completarGestion()
+VistaGrado ..> ColCrear : crearGrado()
+VistaGrado ..> ColEditar : editarGrado()
+VistaGrado ..> ColEliminar : eliminarGrado()
+
+@enduml

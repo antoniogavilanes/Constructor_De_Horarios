@@ -1,0 +1,32 @@
+@startuml analisisAbrirProfesores
+skinparam shadowing false
+skinparam linetype polyline
+
+actor Administrador
+rectangle #CDEBA5 ":Sistema Disponible" as SD_in
+
+package "abrirProfesores()" {
+    rectangle #629EF9 VistaProfesor
+    rectangle #b5bd68 ControladorProfesor
+    rectangle #F2AC4E ProfesorRepository
+    rectangle #F2AC4E Profesor
+}
+
+rectangle #CDEBA5 ":Sistema Disponible" as SD_out
+rectangle #CDEBA5 ":Collaboration CrearProfesor" as ColCrear
+rectangle #CDEBA5 ":Collaboration EditarProfesor" as ColEditar
+rectangle #CDEBA5 ":Collaboration EliminarProfesor" as ColEliminar
+
+SD_in --> VistaProfesor : abrirProfesores()
+VistaProfesor --> ControladorProfesor : listarProfesores()
+ControladorProfesor --> ProfesorRepository : obtenerTodos() : List<Profesor>
+ProfesorRepository -- Profesor
+Administrador --> VistaProfesor : filtrar(criterio)
+VistaProfesor --> ControladorProfesor : filtrarProfesores(criterio) : List<Profesor>
+
+VistaProfesor ..> SD_out : completarGestion()
+VistaProfesor ..> ColCrear : crearProfesor()
+VistaProfesor ..> ColEditar : editarProfesor()
+VistaProfesor ..> ColEliminar : eliminarProfesor()
+
+@enduml

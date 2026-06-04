@@ -1,0 +1,32 @@
+@startuml analisisAbrirAsignaturas
+skinparam shadowing false
+skinparam linetype polyline
+
+actor Administrador
+rectangle #CDEBA5 ":Sistema Disponible" as SD_in
+
+package "abrirAsignaturas()" {
+    rectangle #629EF9 VistaAsignatura
+    rectangle #b5bd68 ControladorAsignatura
+    rectangle #F2AC4E AsignaturaRepository
+    rectangle #F2AC4E Asignatura
+}
+
+rectangle #CDEBA5 ":Sistema Disponible" as SD_out
+rectangle #CDEBA5 ":Collaboration CrearAsignatura" as ColCrear
+rectangle #CDEBA5 ":Collaboration EditarAsignatura" as ColEditar
+rectangle #CDEBA5 ":Collaboration EliminarAsignatura" as ColEliminar
+
+SD_in --> VistaAsignatura : abrirAsignaturas()
+VistaAsignatura --> ControladorAsignatura : listarAsignaturas()
+ControladorAsignatura --> AsignaturaRepository : obtenerTodas() : List<Asignatura>
+AsignaturaRepository -- Asignatura
+Administrador --> VistaAsignatura : filtrar(criterio)
+VistaAsignatura --> ControladorAsignatura : filtrarAsignaturas(criterio) : List<Asignatura>
+
+VistaAsignatura ..> SD_out : completarGestion()
+VistaAsignatura ..> ColCrear : crearAsignatura()
+VistaAsignatura ..> ColEditar : editarAsignatura()
+VistaAsignatura ..> ColEliminar : eliminarAsignatura()
+
+@enduml

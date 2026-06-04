@@ -1,0 +1,37 @@
+@startuml analisisCompletarGestion
+skinparam shadowing false
+skinparam linetype polyline
+
+actor Administrador
+rectangle #CDEBA5 ":Sistema Disponible" as SD_in
+
+package "completarGestion()" {
+    rectangle #629EF9 VistaPrincipal
+    rectangle #b5bd68 ControladorNavegacion
+    rectangle #F2AC4E Sesion
+}
+
+rectangle #CDEBA5 ":Collaboration AbrirAsignaturas"   as ColAsignaturas
+rectangle #CDEBA5 ":Collaboration AbrirProfesores"    as ColProfesores
+rectangle #CDEBA5 ":Collaboration AbrirGrados"        as ColGrados
+rectangle #CDEBA5 ":Collaboration AbrirAulas"         as ColAulas
+rectangle #CDEBA5 ":Collaboration GestionarAsignaciones" as ColAsignaciones
+rectangle #CDEBA5 ":Collaboration GenerarHorario"     as ColHorario
+rectangle #CDEBA5 ":Collaboration ConsultarHorario"   as ColConsultar
+rectangle #CDEBA5 ":Sesión Cerrada"                   as SesionCerrada
+
+SD_in --> VistaPrincipal : completarGestion(administrador)
+VistaPrincipal --> ControladorNavegacion : verificarSesionActiva()
+ControladorNavegacion --> Sesion : getSesion() : Sesion
+Administrador --> VistaPrincipal : seleccionarModulo()
+
+VistaPrincipal ..> ColAsignaturas  : abrirAsignaturas()
+VistaPrincipal ..> ColProfesores   : abrirProfesores()
+VistaPrincipal ..> ColGrados       : abrirGrados()
+VistaPrincipal ..> ColAulas        : abrirAulas()
+VistaPrincipal ..> ColAsignaciones : gestionarAsignaciones()
+VistaPrincipal ..> ColHorario      : generarHorario()
+VistaPrincipal ..> ColConsultar    : consultarHorario()
+VistaPrincipal ..> SesionCerrada   : cerrarSesion()
+
+@enduml

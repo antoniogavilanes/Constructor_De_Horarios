@@ -1,0 +1,30 @@
+@startuml analisisAsignarAulaAsignatura
+skinparam shadowing false
+skinparam linetype polyline
+
+actor Administrador
+rectangle #CDEBA5 ":Collaboration GestionarAsignaciones" as ColGestion
+
+package "asignarAulaAsignatura()" {
+    rectangle #629EF9 VistaAsignaciones
+    rectangle #b5bd68 ControladorAsignaciones
+    rectangle #F2AC4E AulaRepository
+    rectangle #F2AC4E AsignaturaRepository
+    rectangle #F2AC4E Aula
+    rectangle #F2AC4E Asignatura
+}
+
+rectangle #CDEBA5 ":Collaboration GestionarAsignaciones" as ColGestion2
+
+ColGestion --> VistaAsignaciones : asignarAula(codigoAsignatura)
+VistaAsignaciones --> ControladorAsignaciones : obtenerAulas()
+ControladorAsignaciones --> AulaRepository : obtenerTodas() : List<Aula>
+AulaRepository -- Aula
+Administrador --> VistaAsignaciones : seleccionarAula(codigoAula)
+VistaAsignaciones --> ControladorAsignaciones : asignarAulaAsignatura(codigoAsignatura, codigoAula)
+ControladorAsignaciones --> Asignatura : asignarAula(aula)
+ControladorAsignaciones --> AsignaturaRepository : guardar(asignatura)
+AsignaturaRepository -- Asignatura
+VistaAsignaciones ..> ColGestion2 : asignacionCompletada()
+
+@enduml

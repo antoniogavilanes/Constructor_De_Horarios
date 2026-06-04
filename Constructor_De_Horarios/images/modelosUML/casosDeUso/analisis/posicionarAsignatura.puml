@@ -1,0 +1,40 @@
+@startuml analisisPosicionarAsignatura
+skinparam shadowing false
+skinparam linetype polyline
+
+actor Administrador
+rectangle #CDEBA5 ":Collaboration GenerarHorario" as ColGenerar
+
+package "posicionarAsignatura()" {
+    rectangle #629EF9 VistaHorario
+    rectangle #b5bd68 ControladorHorario
+    rectangle #b5bd68 ValidadorHorario
+    rectangle #b5bd68 GestorConflictos
+    rectangle #F2AC4E HorarioRepository
+    rectangle #F2AC4E Horario
+    rectangle #F2AC4E SesionDocente
+    rectangle #F2AC4E Asignatura
+    rectangle #F2AC4E Profesor
+    rectangle #F2AC4E Aula
+}
+
+rectangle #CDEBA5 ":Collaboration GenerarHorario" as ColGenerar2
+
+ColGenerar --> VistaHorario : posicionarAsignatura()
+Administrador --> VistaHorario : arrastrarAsignatura(asignatura, dia, hora)
+VistaHorario --> ControladorHorario : posicionarAsignatura(asignatura, dia, hora)
+ControladorHorario --> ValidadorHorario : validar(asignatura, dia, hora, horario)
+ValidadorHorario --> GestorConflictos : detectarConflictos(asignatura, dia, hora)
+GestorConflictos --> Horario : obtenerSesiones(dia, hora) : List<SesionDocente>
+Horario -- SesionDocente
+GestorConflictos --> ValidadorHorario : resultadoColision(ok / conflicto)
+ValidadorHorario --> ControladorHorario : resultadoValidacion(ok / conflicto)
+ControladorHorario --> SesionDocente : new SesionDocente(asignatura, dia, hora, profesor, aula)
+ControladorHorario --> Horario : agregarSesion(sesionDocente)
+ControladorHorario --> HorarioRepository : guardar(horario)
+SesionDocente --> Asignatura
+SesionDocente --> Profesor
+SesionDocente --> Aula
+VistaHorario ..> ColGenerar2 : posicionamientoCompletado()
+
+@enduml

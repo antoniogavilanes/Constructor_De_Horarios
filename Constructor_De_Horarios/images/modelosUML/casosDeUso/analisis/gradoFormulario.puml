@@ -1,0 +1,40 @@
+@startuml analisisGradoFormulario
+skinparam shadowing false
+skinparam linetype polyline
+
+actor Administrador
+rectangle #CDEBA5 ":Collaboration AbrirGrados" as ColAbrir
+
+package "crearGrado() / editarGrado()" {
+    rectangle #629EF9 VistaGrado
+    rectangle #629EF9 FormularioGrado
+    rectangle #b5bd68 ControladorGrado
+    rectangle #F2AC4E GradoRepository
+    rectangle #F2AC4E Grado
+}
+
+ColAbrir --> VistaGrado : crearGrado() / editarGrado(codigo)
+VistaGrado --> FormularioGrado : mostrarFormulario(grado?)
+Administrador --> FormularioGrado : rellenarCampos(codigo, nombre)
+FormularioGrado --> ControladorGrado : guardar(datos)
+ControladorGrado --> Grado : new / actualizar(codigo, nombre)
+ControladorGrado --> GradoRepository : guardar(grado)
+VistaGrado ..> ColAbrir : listarGrados()
+
+package "eliminarGrado()" {
+    rectangle #629EF9 VistaGrado2
+    rectangle #629EF9 ConfirmacionGrado
+    rectangle #b5bd68 ControladorGrado2
+    rectangle #F2AC4E GradoRepository2
+}
+
+rectangle #CDEBA5 ":Collaboration AbrirGrados" as ColAbrir2
+
+ColAbrir --> VistaGrado2 : eliminarGrado(codigo, nombre)
+VistaGrado2 --> ConfirmacionGrado : confirmarEliminacion(codigo, nombre)
+Administrador --> ConfirmacionGrado : confirmar()
+ConfirmacionGrado --> ControladorGrado2 : eliminar(codigo)
+ControladorGrado2 --> GradoRepository2 : eliminar(codigo)
+VistaGrado2 ..> ColAbrir2 : listarGrados()
+
+@enduml

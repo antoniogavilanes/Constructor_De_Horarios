@@ -1,0 +1,29 @@
+@startuml analisisGestionarAsignaciones
+skinparam shadowing false
+skinparam linetype polyline
+
+actor Administrador
+rectangle #CDEBA5 ":Sistema Disponible" as SD_in
+
+package "gestionarAsignaciones()" {
+    rectangle #629EF9 VistaAsignaciones
+    rectangle #b5bd68 ControladorAsignaciones
+    rectangle #F2AC4E AsignaturaRepository
+    rectangle #F2AC4E Asignatura
+}
+
+rectangle #CDEBA5 ":Sistema Disponible" as SD_out
+rectangle #CDEBA5 ":Collaboration AsignarProfesorAsignatura" as ColProfesor
+rectangle #CDEBA5 ":Collaboration AsignarAulaAsignatura"    as ColAula
+
+SD_in --> VistaAsignaciones : gestionarAsignaciones()
+VistaAsignaciones --> ControladorAsignaciones : obtenerAsignaturasPendientes()
+ControladorAsignaciones --> AsignaturaRepository : obtenerSinAsignar() : List<Asignatura>
+AsignaturaRepository -- Asignatura
+Administrador --> VistaAsignaciones : seleccionarAsignatura(codigoAsignatura)
+
+VistaAsignaciones ..> ColProfesor : asignarProfesor(codigoAsignatura)
+VistaAsignaciones ..> ColAula     : asignarAula(codigoAsignatura)
+VistaAsignaciones ..> SD_out      : completarGestion()
+
+@enduml

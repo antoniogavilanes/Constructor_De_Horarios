@@ -1,0 +1,41 @@
+@startuml analisisAulaFormulario
+skinparam shadowing false
+skinparam linetype polyline
+
+actor Administrador
+rectangle #CDEBA5 ":Collaboration AbrirAulas" as ColAbrir
+
+package "crearAula() / editarAula()" {
+    rectangle #629EF9 VistaAula
+    rectangle #629EF9 FormularioAula
+    rectangle #b5bd68 ControladorAula
+    rectangle #F2AC4E AulaRepository
+    rectangle #F2AC4E Aula
+}
+
+ColAbrir --> VistaAula : crearAula() / editarAula(codigo)
+VistaAula --> FormularioAula : mostrarFormulario(aula?)
+Administrador --> FormularioAula : rellenarCampos(codigo, capacidad)
+FormularioAula --> ControladorAula : guardar(datos)
+ControladorAula --> Aula : new / actualizar(codigo, capacidad)
+ControladorAula --> AulaRepository : guardar(aula)
+VistaAula ..> ColAbrir : listarAulas()
+
+package "eliminarAula()" {
+    rectangle #629EF9 VistaAula2
+    rectangle #629EF9 ConfirmacionAula
+    rectangle #b5bd68 ControladorAula2
+    rectangle #F2AC4E AulaRepository2
+}
+
+rectangle #CDEBA5 ":Collaboration AbrirAulas" as ColAbrir2
+
+ColAbrir --> VistaAula2 : eliminarAula(codigo)
+VistaAula2 --> ConfirmacionAula : confirmarEliminacion(codigo)
+Administrador --> ConfirmacionAula : confirmar()
+ConfirmacionAula --> ControladorAula2 : eliminar(codigo)
+ControladorAula2 --> AulaRepository2 : verificarSinHorariosActivos(codigo)
+ControladorAula2 --> AulaRepository2 : eliminar(codigo)
+VistaAula2 ..> ColAbrir2 : listarAulas()
+
+@enduml

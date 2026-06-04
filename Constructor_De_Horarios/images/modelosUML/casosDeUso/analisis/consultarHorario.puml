@@ -1,0 +1,35 @@
+@startuml analisisConsultarHorario
+skinparam shadowing false
+skinparam linetype polyline
+
+actor Administrador
+rectangle #CDEBA5 ":Sistema Disponible" as SD_in
+
+package "consultarHorario()" {
+    rectangle #629EF9 VistaHorario
+    rectangle #b5bd68 ControladorConsultaHorario
+    rectangle #F2AC4E HorarioRepository
+    rectangle #F2AC4E Horario
+    rectangle #F2AC4E SesionDocente
+}
+
+rectangle #CDEBA5 ":Sistema Disponible" as SD_out
+rectangle #CDEBA5 ":Collaboration GenerarHorario" as ColGenerar
+
+SD_in --> VistaHorario : consultarHorario()
+VistaHorario --> ControladorConsultaHorario : obtenerHorario()
+ControladorConsultaHorario --> HorarioRepository : obtenerHorarioPublicado() : Horario
+HorarioRepository -- Horario
+Horario -- SesionDocente
+VistaHorario --> ControladorConsultaHorario : renderizarMatriz(horario)
+
+Administrador --> VistaHorario : filtrarPorAula(codigoAula)
+VistaHorario --> ControladorConsultaHorario : filtrarPorAula(codigoAula) : List<SesionDocente>
+
+Administrador --> VistaHorario : filtrarPorProfesor(dniProfesor)
+VistaHorario --> ControladorConsultaHorario : filtrarPorProfesor(dniProfesor) : List<SesionDocente>
+
+VistaHorario ..> SD_out : completarGestion()
+VistaHorario ..> ColGenerar : generarHorario()
+
+@enduml

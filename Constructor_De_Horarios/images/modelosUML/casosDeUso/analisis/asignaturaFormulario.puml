@@ -1,0 +1,40 @@
+@startuml analisisAsignaturaFormulario
+skinparam shadowing false
+skinparam linetype polyline
+
+actor Administrador
+rectangle #CDEBA5 ":Collaboration AbrirAsignaturas" as ColAbrir
+
+package "crearAsignatura() / editarAsignatura()" {
+    rectangle #629EF9 VistaAsignatura
+    rectangle #629EF9 FormularioAsignatura
+    rectangle #b5bd68 ControladorAsignatura
+    rectangle #F2AC4E AsignaturaRepository
+    rectangle #F2AC4E Asignatura
+}
+
+ColAbrir --> VistaAsignatura : crearAsignatura() / editarAsignatura(codigo)
+VistaAsignatura --> FormularioAsignatura : mostrarFormulario(asignatura?)
+Administrador --> FormularioAsignatura : rellenarCampos(codigo, nombre, creditos, curso)
+FormularioAsignatura --> ControladorAsignatura : guardar(datos)
+ControladorAsignatura --> Asignatura : new / actualizar(codigo, nombre, creditos, curso)
+ControladorAsignatura --> AsignaturaRepository : guardar(asignatura)
+VistaAsignatura ..> ColAbrir : listarAsignaturas()
+
+package "eliminarAsignatura()" {
+    rectangle #629EF9 VistaAsignatura2
+    rectangle #629EF9 ConfirmacionAsignatura
+    rectangle #b5bd68 ControladorAsignatura2
+    rectangle #F2AC4E AsignaturaRepository2
+}
+
+rectangle #CDEBA5 ":Collaboration AbrirAsignaturas" as ColAbrir2
+
+ColAbrir --> VistaAsignatura2 : eliminarAsignatura(codigo)
+VistaAsignatura2 --> ConfirmacionAsignatura : confirmarEliminacion(codigo, nombre)
+Administrador --> ConfirmacionAsignatura : confirmar()
+ConfirmacionAsignatura --> ControladorAsignatura2 : eliminar(codigo)
+ControladorAsignatura2 --> AsignaturaRepository2 : eliminar(codigo)
+VistaAsignatura2 ..> ColAbrir2 : listarAsignaturas()
+
+@enduml

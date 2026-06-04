@@ -1,0 +1,30 @@
+@startuml analisisAsignarProfesorAsignatura
+skinparam shadowing false
+skinparam linetype polyline
+
+actor Administrador
+rectangle #CDEBA5 ":Collaboration GestionarAsignaciones" as ColGestion
+
+package "asignarProfesorAsignatura()" {
+    rectangle #629EF9 VistaAsignaciones
+    rectangle #b5bd68 ControladorAsignaciones
+    rectangle #F2AC4E ProfesorRepository
+    rectangle #F2AC4E AsignaturaRepository
+    rectangle #F2AC4E Profesor
+    rectangle #F2AC4E Asignatura
+}
+
+rectangle #CDEBA5 ":Collaboration GestionarAsignaciones" as ColGestion2
+
+ColGestion --> VistaAsignaciones : asignarProfesor(codigoAsignatura)
+VistaAsignaciones --> ControladorAsignaciones : obtenerProfesores()
+ControladorAsignaciones --> ProfesorRepository : obtenerTodos() : List<Profesor>
+ProfesorRepository -- Profesor
+Administrador --> VistaAsignaciones : seleccionarProfesor(dniProfesor)
+VistaAsignaciones --> ControladorAsignaciones : asignarProfesorAsignatura(codigoAsignatura, dniProfesor)
+ControladorAsignaciones --> Asignatura : asignarProfesor(profesor)
+ControladorAsignaciones --> AsignaturaRepository : guardar(asignatura)
+AsignaturaRepository -- Asignatura
+VistaAsignaciones ..> ColGestion2 : asignacionCompletada()
+
+@enduml

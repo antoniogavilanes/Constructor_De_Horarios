@@ -1,0 +1,308 @@
+@startuml DiagramaDiseñov2
+skinparam style strictuml
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+
+left to right direction
+
+' =====================================================
+' SUBSISTEMA: GESTIÓN DE HORARIOS
+' =====================================================
+
+package "Gestión de Horarios" {
+
+    ' ===== SESIÓN =====
+
+    class VistaSesion {
+        +mostrarFormularioLogin()
+        +mostrarError()
+    }
+
+    class ControladorSesion {
+        +autenticar(usuario, contraseña) : Sesion
+        +cerrarSesion()
+    }
+
+    class UsuarioRepository {
+        +validarCredenciales(usuario, contraseña) : Usuario
+    }
+
+    class Usuario {
+        -usuario: String
+        -contraseña: String
+    }
+
+    class Sesion {
+        -token: String
+        -activa: boolean
+        +crearSesion(usuario) : Sesion
+        +destruirSesion()
+    }
+
+    ' ===== NAVEGACIÓN =====
+
+    class VistaPrincipal {
+        +mostrarMenu()
+    }
+
+    class ControladorNavegacion {
+        +verificarSesionActiva() : Sesion
+    }
+
+    ' ===== ASIGNATURAS =====
+
+    class VistaAsignatura {
+        +mostrarLista()
+        +mostrarFiltros()
+    }
+
+    class FormularioAsignatura {
+        +mostrarFormulario(asignatura?)
+        +confirmarEliminacion(codigo, nombre)
+    }
+
+    class ControladorAsignatura {
+        +listarAsignaturas() : List<Asignatura>
+        +filtrarAsignaturas(criterio) : List<Asignatura>
+        +guardar(datos)
+        +eliminar(codigo)
+    }
+
+    class AsignaturaRepository {
+        +obtenerTodas() : List<Asignatura>
+        +obtenerSinAsignar() : List<Asignatura>
+        +guardar(asignatura)
+        +eliminar(codigo)
+        +filtrar(criterio) : List<Asignatura>
+    }
+
+    class Asignatura {
+        -codigo: String
+        -nombre: String
+        -creditos: int
+        -curso: int
+        +asignarProfesor(profesor)
+        +asignarAula(aula)
+    }
+
+    ' ===== PROFESORES =====
+
+    class VistaProfesor {
+        +mostrarLista()
+        +mostrarFiltros()
+    }
+
+    class FormularioProfesor {
+        +mostrarFormulario(profesor?)
+        +confirmarEliminacion(nombre, apellido)
+    }
+
+    class ControladorProfesor {
+        +listarProfesores() : List<Profesor>
+        +filtrarProfesores(criterio) : List<Profesor>
+        +guardar(datos)
+        +eliminar(dni)
+        +verificarDniUnico(dni) : boolean
+    }
+
+    class ProfesorRepository {
+        +obtenerTodos() : List<Profesor>
+        +guardar(profesor)
+        +eliminar(dni)
+    }
+
+    class Profesor {
+        -dni: String
+        -nombre: String
+        -apellidos: String
+        -telefono: String
+        -correo: String
+    }
+
+    ' ===== GRADOS =====
+
+    class VistaGrado {
+        +mostrarLista()
+    }
+
+    class FormularioGrado {
+        +mostrarFormulario(grado?)
+        +confirmarEliminacion(codigo, nombre)
+    }
+
+    class ControladorGrado {
+        +listarGrados() : List<Grado>
+        +filtrarGrados(criterio) : List<Grado>
+        +guardar(datos)
+        +eliminar(codigo)
+    }
+
+    class GradoRepository {
+        +obtenerTodos() : List<Grado>
+        +guardar(grado)
+        +eliminar(codigo)
+    }
+
+    class Grado {
+        -codigo: String
+        -nombre: String
+    }
+
+    ' ===== AULAS =====
+
+    class VistaAula {
+        +mostrarLista()
+        +mostrarFiltros()
+    }
+
+    class FormularioAula {
+        +mostrarFormulario(aula?)
+        +confirmarEliminacion(codigo)
+    }
+
+    class ControladorAula {
+        +listarAulas() : List<Aula>
+        +filtrarAulas(criterio) : List<Aula>
+        +guardar(datos)
+        +eliminar(codigo)
+        +verificarSinHorariosActivos(codigo) : boolean
+    }
+
+    class AulaRepository {
+        +obtenerTodas() : List<Aula>
+        +guardar(aula)
+        +eliminar(codigo)
+        +verificarSinHorariosActivos(codigo) : boolean
+    }
+
+    class Aula {
+        -codigo: String
+        -capacidad: int
+    }
+
+    ' ===== ASIGNACIONES =====
+
+    class VistaAsignaciones {
+        +mostrarPanelAsignaciones()
+        +mostrarListaProfesores()
+        +mostrarListaAulas()
+    }
+
+    class ControladorAsignaciones {
+        +obtenerAsignaturasPendientes() : List<Asignatura>
+        +obtenerProfesores() : List<Profesor>
+        +obtenerAulas() : List<Aula>
+        +asignarProfesorAsignatura(codigoAsignatura, dniProfesor)
+        +asignarAulaAsignatura(codigoAsignatura, codigoAula)
+    }
+
+    ' ===== HORARIO =====
+
+    class VistaHorario {
+        +mostrarMatrizInteractiva()
+        +mostrarConflicto(mensaje)
+        +mostrarMatrizEstatica()
+    }
+
+    class ControladorHorario {
+        +iniciarGeneracion()
+        +posicionarAsignatura(asignatura, dia, hora)
+        +confirmarPosicionamiento()
+    }
+
+    class ValidadorHorario {
+        +validar(asignatura, dia, hora, horario) : boolean
+    }
+
+    class GestorConflictos {
+        +detectarConflictos(asignatura, dia, hora) : boolean
+    }
+
+    class ControladorConsultaHorario {
+        +obtenerHorario() : Horario
+        +renderizarMatriz(horario)
+        +filtrarPorAula(codigoAula) : List<SesionDocente>
+        +filtrarPorProfesor(dniProfesor) : List<SesionDocente>
+    }
+
+    class HorarioRepository {
+        +obtenerAsignaturasPlanificables() : List<Asignatura>
+        +obtenerHorarioActual() : Horario
+        +obtenerHorarioPublicado() : Horario
+        +guardar(horario)
+    }
+
+    class Horario {
+        -estado: String
+        -fechaCreacion: Date
+        +agregarSesion(sesion)
+        +validar()
+        +publicar()
+    }
+
+    class SesionDocente {
+        -dia: String
+        -horaInicio: String
+        -horaFin: String
+    }
+
+    class Semestre {
+        -periodo: String
+    }
+
+    ' ===== RELACIONES =====
+
+    VistaSesion --> ControladorSesion
+    ControladorSesion --> UsuarioRepository
+    UsuarioRepository --> Usuario
+    ControladorSesion --> Sesion
+    VistaPrincipal --> ControladorNavegacion
+    ControladorNavegacion --> Sesion
+
+    VistaAsignatura --> ControladorAsignatura
+    FormularioAsignatura --> ControladorAsignatura
+    ControladorAsignatura --> AsignaturaRepository
+    AsignaturaRepository --> Asignatura
+
+    VistaProfesor --> ControladorProfesor
+    FormularioProfesor --> ControladorProfesor
+    ControladorProfesor --> ProfesorRepository
+    ProfesorRepository --> Profesor
+
+    VistaGrado --> ControladorGrado
+    FormularioGrado --> ControladorGrado
+    ControladorGrado --> GradoRepository
+    GradoRepository --> Grado
+    Grado "1" o-- "*" Asignatura
+
+    VistaAula --> ControladorAula
+    FormularioAula --> ControladorAula
+    ControladorAula --> AulaRepository
+    AulaRepository --> Aula
+
+    Asignatura --> Profesor
+    Asignatura --> Aula
+
+    VistaAsignaciones --> ControladorAsignaciones
+    ControladorAsignaciones --> AsignaturaRepository
+    ControladorAsignaciones --> ProfesorRepository
+    ControladorAsignaciones --> AulaRepository
+
+    VistaHorario --> ControladorHorario
+    VistaHorario --> ControladorConsultaHorario
+    ControladorHorario --> ValidadorHorario
+    ControladorHorario --> HorarioRepository
+    ValidadorHorario --> GestorConflictos
+    GestorConflictos --> Horario
+    ControladorHorario --> Horario
+    ControladorConsultaHorario --> HorarioRepository
+
+    Horario "1" *-- "*" SesionDocente
+    SesionDocente --> Asignatura
+    SesionDocente --> Profesor
+    SesionDocente --> Aula
+    Horario --> Semestre
+}
+
+@enduml

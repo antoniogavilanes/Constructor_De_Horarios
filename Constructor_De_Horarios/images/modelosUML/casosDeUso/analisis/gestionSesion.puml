@@ -1,0 +1,34 @@
+@startuml analisisGestionSesion
+skinparam shadowing false
+skinparam linetype polyline
+
+actor Administrador
+
+rectangle #CDEBA5 ":Sesión Cerrada" as SesionCerrada
+
+package "iniciarSesion()" {
+    rectangle #629EF9 VistaSesion
+    rectangle #b5bd68 ControladorSesion
+    rectangle #F2AC4E UsuarioRepository
+    rectangle #F2AC4E Usuario
+    rectangle #F2AC4E Sesion
+}
+
+rectangle #CDEBA5 ":Sistema Disponible" as SistemaDisponible
+
+SesionCerrada --> VistaSesion : iniciarSesion()
+Administrador --> VistaSesion : credenciales(usuario, contraseña)
+VistaSesion --> ControladorSesion : autenticar(usuario, contraseña)
+ControladorSesion --> UsuarioRepository : validarCredenciales(usuario, contraseña)
+UsuarioRepository -- Usuario
+ControladorSesion --> Sesion : crearSesion(usuario)
+VistaSesion ..> SistemaDisponible : sistemaDisponible(administrador)
+
+rectangle #CDEBA5 ":Sesión Cerrada" as SesionCerrada2
+
+SistemaDisponible --> VistaSesion : cerrarSesion()
+VistaSesion --> ControladorSesion : cerrarSesion()
+ControladorSesion --> Sesion : destruirSesion()
+VistaSesion ..> SesionCerrada2 : sesionCerrada()
+
+@enduml
