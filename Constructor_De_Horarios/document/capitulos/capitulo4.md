@@ -16,7 +16,7 @@ Se trata, en definitiva, de crear una **abstracción sin fisuras de la implement
 
 ## 2. Análisis de la Arquitectura
 
-### 2.1. Patrón arquitectónico
+### Patrón arquitectónico
 
 El sistema adopta el patrón **Modelo-Vista-Controlador (MVC)** como arquitectura base. Este patrón separa las responsabilidades del sistema en tres capas bien diferenciadas:
 
@@ -28,7 +28,7 @@ El sistema adopta el patrón **Modelo-Vista-Controlador (MVC)** como arquitectur
 
 La elección del patrón MVC se fundamenta en su capacidad para **aislar los cambios**: una modificación en la interfaz de usuario no afecta al modelo de datos, y viceversa, lo que facilita el mantenimiento y la evolución del sistema a lo largo de las iteraciones de desarrollo.
 
-### 2.2. Subsistemas
+### Subsistemas
 
 El modelo de dominio definido en el Capítulo 2 identifica tres bloques conceptuales: Horarios, Reservas e Incidencias. No obstante, los casos de uso especificados en el Capítulo 3 acoten el alcance de esta iteración al subsistema de **Gestión de Horarios**, que constituye el núcleo funcional del sistema y el de mayor valor y riesgo arquitectónico. Los subsistemas de Reservas e Incidencias quedan identificados como ámbitos de desarrollo futuro, sin casos de uso definidos en la presente iteración.
 
@@ -40,7 +40,7 @@ El modelo de dominio definido en el Capítulo 2 identifica tres bloques conceptu
 
 <div align="center">
 
-<img src="../../images/imagenes/DiagramaDiseño.svg"/>
+<img src="../../images/imagenes/analisis/DiagramaDiseño.svg"/>
 
 </div>
 
@@ -59,7 +59,7 @@ Una vez iniciada la sesión, el sistema entra en el estado `:Sistema Disponible`
 
 <div align="center">
 
-<img src="../../images/imagenes/analisisCompletarGestion.svg" width="85%"/>
+<img src="../../images/imagenes/analisis/analisisCompletarGestion.svg" width="85%"/>
 
 </div>
 
@@ -71,7 +71,7 @@ El sistema restringe el acceso mediante autenticación. La `VistaSesion` recoge 
 
 <div align="center">
 
-<img src="../../images/imagenes/analisisGestionSesion.svg" width="70%"/>
+<img src="../../images/imagenes/analisis/analisisGestionSesion.svg" width="70%"/>
 
 </div>
 
@@ -85,8 +85,8 @@ Cada entidad académica sigue el mismo patrón de colaboración: una vista de li
 
 <div align="center">
 
-<img src="../../images/imagenes/analisisAbrirAsignaturas.svg" width="70%"/>
-<img src="../../images/imagenes/analisisAsignaturaFormulario.svg" width="70%"/>
+<img src="../../images/imagenes/analisis/analisisAbrirAsignaturas.svg" width="70%"/>
+<img src="../../images/imagenes/analisis/analisisAsignaturaFormulario.svg" width="70%"/>
 
 </div>
 
@@ -94,8 +94,8 @@ Cada entidad académica sigue el mismo patrón de colaboración: una vista de li
 
 <div align="center">
 
-<img src="../../images/imagenes/analisisAbrirProfesores.svg" width="70%"/>
-<img src="../../images/imagenes/analisisProfesorFormulario.svg" width="70%"/>
+<img src="../../images/imagenes/analisis/analisisAbrirProfesores.svg" width="70%"/>
+<img src="../../images/imagenes/analisis/analisisProfesorFormulario.svg" width="70%"/>
 
 </div>
 
@@ -103,8 +103,8 @@ Cada entidad académica sigue el mismo patrón de colaboración: una vista de li
 
 <div align="center">
 
-<img src="../../images/imagenes/analisisAbrirGrados.svg" width="70%"/>
-<img src="../../images/imagenes/analisisGradoFormulario.svg" width="70%"/>
+<img src="../../images/imagenes/analisis/analisisAbrirGrados.svg" width="70%"/>
+<img src="../../images/imagenes/analisis/analisisGradoFormulario.svg" width="70%"/>
 
 </div>
 
@@ -112,8 +112,8 @@ Cada entidad académica sigue el mismo patrón de colaboración: una vista de li
 
 <div align="center">
 
-<img src="../../images/imagenes/analisisAbrirAulas.svg" width="70%"/>
-<img src="../../images/imagenes/analisisAulaFormulario.svg" width="70%"/>
+<img src="../../images/imagenes/analisis/analisisAbrirAulas.svg" width="70%"/>
+<img src="../../images/imagenes/analisis/analisisAulaFormulario.svg" width="70%"/>
 
 </div>
 
@@ -125,14 +125,14 @@ La gestión de asignaciones se articula en tres colaboraciones. El panel princip
 
 <div align="center">
 
-<img src="../../images/imagenes/analisisGestionarAsignaciones.svg" width="70%"/>
+<img src="../../images/imagenes/analisis/analisisGestionarAsignaciones.svg" width="70%"/>
 
 </div>
 
 <div align="center">
 
-<img src="../../images/imagenes/analisisAsignarProfesorAsignatura.svg" width="70%"/>
-<img src="../../images/imagenes/analisisAsignarAulaAsignatura.svg" width="70%"/>
+<img src="../../images/imagenes/analisis/analisisAsignarProfesorAsignatura.svg" width="70%"/>
+<img src="../../images/imagenes/analisis/analisisAsignarAulaAsignatura.svg" width="70%"/>
 
 </div>
 
@@ -144,13 +144,13 @@ La generación del horario se articula en dos colaboraciones. La primera inicial
 
 <div align="center">
 
-<img src="../../images/imagenes/analisisGenerarHorario.svg" width="70%"/>
+<img src="../../images/imagenes/analisis/analisisGenerarHorario.svg" width="70%"/>
 
 </div>
 
 <div align="center">
 
-<img src="../../images/imagenes/analisisPosicionarAsignatura.svg" width="70%"/>
+<img src="../../images/imagenes/analisis/analisisPosicionarAsignatura.svg" width="70%"/>
 
 </div>
 
@@ -162,7 +162,7 @@ El `ControladorConsultaHorario` recupera el horario publicado del repositorio y 
 
 <div align="center">
 
-<img src="../../images/imagenes/analisisConsultarHorario.svg" width="70%"/>
+<img src="../../images/imagenes/analisis/analisisConsultarHorario.svg" width="70%"/>
 
 </div>
 
@@ -170,7 +170,7 @@ El `ControladorConsultaHorario` recupera el horario publicado del repositorio y 
 
 ## 4. Análisis y Diseño de Clases
 
-### 4.1. Identificación de clases
+### Identificación de clases
 
 A partir del análisis de los casos de uso y del modelo de dominio existente, se identifican tres tipos de clases siguiendo el estereotipo MVC:
 
@@ -225,13 +225,13 @@ Se establece una clase controladora por cada caso de uso principal, responsable 
 | `GestorConflictos` | Refinamiento de `ControladorHorario` para la detección de colisiones |
 | `ControladorConsultaHorario` | `consultarHorario()` |
 
-### 4.2. Diagrama de Clases
+### Diagrama de Clases
 
 Identificadas las clases, se trazan sus nombres, responsabilidades y relaciones en el diagrama de clases de diseño, articulado en torno al subsistema de Gestión de Horarios:
 
 <div align="center">
 
-<img src="../../images/imagenes/DiagramaDiseñoV2.svg"/>
+<img src="../../images/imagenes/analisis/DiagramaDiseñov2.svg"/>
 
 </div>
 
@@ -264,7 +264,7 @@ El paquete `gestionHorarios` no tiene dependencias externas en esta iteración, 
 
 ## 6. El Sistema desde la Perspectiva del Jefe de Proyecto
 
-### 6.1. ¿Por qué parte comenzarías, continuarías y terminarías la producción?
+### ¿Por qué parte comenzarías, continuarías y terminarías la producción?
 
 El orden de implementación se determina directamente a partir de la **tabla de priorización de casos de uso** establecida en el Capítulo 3. Se inicia con la gestión de sesión como punto de entrada obligatorio, se continúa con el CRUD de entidades base —sin las cuales no puede operar ningún proceso posterior— y se avanza progresivamente hacia la funcionalidad de mayor complejidad y riesgo arquitectónico: la generación del horario con validación de conflictos en tiempo real.
 
@@ -277,7 +277,7 @@ El orden de implementación se determina directamente a partir de la **tabla de 
 | 5 | Consulta del horario | Funcionalidad de lectura que cierra el flujo principal |
 | 6 | Eliminación de registros | Operaciones destructivas de menor criticidad funcional |
 
-### 6.2. ¿Qué medidas aplicarías para obtener la calidad del software adecuada?
+### ¿Qué medidas aplicarías para obtener la calidad del software adecuada?
 
 Para garantizar la calidad del software y facilitar la depuración de errores y la mantenibilidad correctiva, perfectiva y adaptativa, se aplican las siguientes medidas con **trazabilidad** como hilo conductor:
 
@@ -289,7 +289,7 @@ Para garantizar la calidad del software y facilitar la depuración de errores y 
 | **Análisis de paquetes** | Verificación de ausencia de dependencias circulares entre subsistemas. |
 | **Trazabilidad** | Cada clase y método debe poder rastrearse hasta el caso de uso que lo origina, garantizando que ninguna decisión de diseño carece de justificación en los requisitos. |
 
-### 6.3. ¿Cómo organizarías las tareas de producción?
+### ¿Cómo organizarías las tareas de producción?
 
 Siendo un proyecto de desarrollo individual, las actividades se abordan de forma secuencial siguiendo el orden de prioridades establecido. Cada actividad se estima en un rango de 2 a 20 horas, reservando el límite superior para la funcionalidad de mayor complejidad técnica:
 

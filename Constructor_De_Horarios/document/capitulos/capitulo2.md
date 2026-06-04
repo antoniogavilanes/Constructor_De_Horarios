@@ -14,7 +14,7 @@ El modelo del dominio representa los conceptos fundamentales del sistema y las r
 
 <div align="center">
 
-<img src="../../images/imagenes/ModeloDominio.svg"/>
+<img src="../../images/imagenes/dominio/ModeloDominio.svg"/>
 
 </div>
 
@@ -57,7 +57,7 @@ El diagrama de objetos representa una **instancia concreta del sistema en un mom
 
 <div align="center">
 
-<img src="../../images/imagenes/DiagramaObjetos.svg"/>
+<img src="../../images/imagenes/dominio/DiagramaObjetos.svg"/>
 
 </div>
 
@@ -89,7 +89,7 @@ En este sistema se han modelado tres entidades principales: horario, incidencias
 
 <div align="center">
 
-<img src="../../images/imagenes/DiagramaEstadosHorario.svg" width="30%"/>
+<img src="../../images/imagenes/dominio/DiagramaEstadosHorario.svg" width="30%"/>
 
 </div>
 
@@ -109,7 +109,7 @@ El flujo incluye decisiones mediante nodos `<<choice>>`, especialmente en la val
 
 <div align="center">
 
-<img src="../../images/imagenes/DiagramaEstadosIncidencias.svg" width="30%"/>
+<img src="../../images/imagenes/dominio/DiagramaEstadosIncidencias.svg" width="30%"/>
 
 </div>
 
@@ -130,7 +130,7 @@ El sistema evalúa su validez y determina si pueden ser resueltas o deben ser de
 
 <div align="center">
 
-<img src="../../images/imagenes/DiagramaEstadosReservas.svg" width="50%"/>
+<img src="../../images/imagenes/dominio/DiagramaEstadosReservas.svg" width="50%"/>
 
 </div>
 

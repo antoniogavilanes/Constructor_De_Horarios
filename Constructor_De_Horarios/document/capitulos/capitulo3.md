@@ -25,7 +25,7 @@ Este bloque agrupa los casos de uso encargados del mantenimiento de los registro
 
 <div align="center">
 
-<img src="../../images/imagenes/CasoDeUso1.svg"/>
+<img src="../../images/imagenes/requisitos/CasoDeUso1.svg"/>
 
 </div>
 
@@ -34,7 +34,7 @@ Este bloque modela la gestión de espacios físicos, el motor lógico de emparej
 
 <div align="center">
 
-<img src="../../images/imagenes/CasoDeUso2.svg"/>
+<img src="../../images/imagenes/requisitos/CasoDeUso2.svg"/>
 
 </div>
 
@@ -88,7 +88,7 @@ Este modelo es crítico para la funcionalidad de **Drag & Drop**, ya que garanti
 
 <div align="center">
 
-<img src="../../images/imagenes/DiagramaContexto.svg"/>
+<img src="../../images/imagenes/requisitos/DiagramaContexto.svg"/>
 
 </div>
 

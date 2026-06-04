@@ -1,4 +1,4 @@
-
+﻿
 # Constructor de Horarios
 
 
@@ -19,21 +19,16 @@
 | [Capítulo 1 — Introducción](./document/capitulos/capitulo1.md) | Escenario, estado del arte, propuesta de solución, hipótesis, objetivos y metodología |
 | [Capítulo 2 — Modelo del Dominio](./document/capitulos/capitulo2.md) | Modelo del dominio, diagrama de objetos y diagramas de estados |
 | [Capítulo 3 — Disciplina de Requisitos](./document/capitulos/capitulo3.md) | Actores, casos de uso, priorización, detallado y diagrama de contexto |
+| [Capítulo 4 — Análisis y Diseño](./document/capitulos/capitulo4.md) | Arquitectura MVC, diagramas de colaboración por caso de uso y diagrama de clases de diseño |
 
 ---
 
 ## Diagramas
 
-| Diagrama | Descripción |
-|:---|:---|
-| [Modelo del Dominio](./images/imagenes/ModeloDominio.svg) | Estructura conceptual del sistema con sus tres bloques principales |
-| [Diagrama de Objetos](./images/imagenes/DiagramaObjetos.svg) | Instancia concreta del dominio en un escenario real |
-| [Estados del Horario](./images/imagenes/DiagramaEstadosHorario.svg) | Ciclo de vida del horario académico |
-| [Estados de Incidencias](./images/imagenes/DiagramaEstadosIncidencias.svg) | Ciclo de vida de una incidencia |
-| [Estados de Reservas](./images/imagenes/DiagramaEstadosReservas.svg) | Ciclo de vida de una reserva de aula |
-| [Casos de Uso — Parte I](./images/imagenes/CasoDeUso1.svg) | Gestión de entidades académicas |
-| [Casos de Uso — Parte II](./images/imagenes/CasoDeUso2.svg) | Infraestructura y planificación |
-| [Diagrama de Contexto](./images/imagenes/DiagramaContexto.svg) | Navegación global del sistema |
-| [Diagrama de Diseño](./images/imagenes/DiagramaDiseño.svg) | Arquitectura de clases del sistema |
+| Disciplina | Galería | Contenido |
+|:---|:---|:---|
+| Capítulo 2 — Modelo del Dominio | [DOMINIO.md](./images/DOMINIO.md) | Modelo del dominio, diagrama de objetos y diagramas de estados |
+| Capítulo 3 — Disciplina de Requisitos | [REQUISITOS.md](./images/REQUISITOS.md) | Casos de uso, diagrama de contexto y detallado de responsabilidades |
+| Capítulo 4 — Análisis y Diseño | [ANALISIS.md](./images/ANALISIS.md) | Diagrama de clases de diseño y diagramas de colaboración MVC |
 
 > Los fuentes PlantUML se encuentran en [`images/modelosUML/`](./images/modelosUML/)
