@@ -1,0 +1,166 @@
+.gh-layout {
+  display: flex;
+  gap: 20px;
+  padding: 24px 32px;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ── Sidebar ── */
+.gh-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.gh-sidebar-title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.gh-sidebar-hint {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  margin-top: -8px;
+}
+
+.gh-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gh-subject-card {
+  background: var(--white);
+  border: 1.5px dashed var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  cursor: grab;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.gh-subject-card:hover {
+  border-color: var(--blue);
+  box-shadow: 0 2px 8px rgba(26, 124, 193, 0.1);
+}
+.gh-subject-card:active { cursor: grabbing; }
+
+.gh-grip { color: var(--text-light); flex-shrink: 0; margin-top: 2px; }
+
+.gh-subject-code {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.gh-subject-name {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.3;
+}
+
+.gh-subject-meta {
+  font-size: 0.75rem;
+  color: var(--text-gray);
+  margin-top: 2px;
+}
+
+/* ── Main ── */
+.gh-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.gh-main-title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.gh-grid-wrap {
+  overflow-x: auto;
+  flex: 1;
+}
+
+.gh-grid {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.gh-th-hora {
+  width: 64px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.gh-th-dia {
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--navy);
+  border-bottom: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+
+.gh-td-hora {
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-gray);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.gh-cell {
+  padding: 4px;
+  border-bottom: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  height: 52px;
+  vertical-align: top;
+}
+
+.gh-cell-empty {
+  background: #fafafa;
+}
+.gh-cell-empty:hover {
+  background: var(--blue-light);
+  cursor: copy;
+}
+
+.gh-cell-filled { background: transparent; }
+
+.gh-slot {
+  height: 100%;
+  border-radius: 5px;
+  padding: 4px 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  opacity: 0.9;
+}
+
+.gh-slot-code {
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.gh-slot-name {
+  font-size: 0.6875rem;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.2;
+}

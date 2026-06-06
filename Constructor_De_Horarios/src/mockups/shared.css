@@ -1,0 +1,199 @@
+/* ── Tokens ── */
+:root {
+  --blue:        #1A7CC1;
+  --blue-hover:  #1565a8;
+  --blue-light:  #e8f4fd;
+  --navy:        #1e2d3d;
+  --navy-hover:  #16202b;
+  --gray-bg:     #f0f2f5;
+  --white:       #ffffff;
+  --border:      #e2e8f0;
+  --text-dark:   #1e2d3d;
+  --text-gray:   #64748b;
+  --text-light:  #94a3b8;
+  --error:       #ef4444;
+  --navbar-h:    56px;
+}
+
+/* ── Layout base ── */
+.mock-page {
+  min-height: 100vh;
+  background: var(--gray-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Navbar ── */
+.mock-navbar {
+  height: var(--navbar-h);
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  flex-shrink: 0;
+}
+
+.mock-navbar-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+}
+
+/* ── Botones ── */
+.mock-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  border: 1px solid transparent;
+  font-family: inherit;
+}
+
+.mock-btn-primary {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+.mock-btn-primary:hover { background: var(--navy-hover); }
+
+.mock-btn-blue {
+  background: var(--blue);
+  color: var(--white);
+  border-color: var(--blue);
+  width: 100%;
+  justify-content: center;
+  padding: 10px 16px;
+  font-size: 0.9375rem;
+}
+.mock-btn-blue:hover { background: var(--blue-hover); }
+
+.mock-btn-outline {
+  background: transparent;
+  color: var(--navy);
+  border-color: var(--border);
+}
+.mock-btn-outline:hover { background: var(--gray-bg); }
+
+/* ── Formulario ── */
+.mock-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mock-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.mock-input {
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.9375rem;
+  color: var(--text-dark);
+  background: var(--white);
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
+  width: 100%;
+}
+.mock-input::placeholder { color: var(--text-light); }
+.mock-input:focus { border-color: var(--blue); }
+
+.mock-input-wrap {
+  position: relative;
+}
+.mock-input-wrap .mock-input { padding-right: 40px; }
+.mock-input-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* ── Card ── */
+.mock-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+/* ── Tabla ── */
+.mock-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+.mock-table th {
+  text-align: left;
+  padding: 12px 16px;
+  font-weight: 600;
+  color: var(--text-dark);
+  border-bottom: 1px solid var(--border);
+  background: var(--white);
+}
+.mock-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-dark);
+}
+.mock-table tr:last-child td { border-bottom: none; }
+
+.mock-icon-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--white);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  color: var(--text-gray);
+  transition: background 0.15s;
+}
+.mock-icon-btn:hover { background: var(--gray-bg); }
+
+/* ── Search bar ── */
+.mock-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--white);
+  width: 100%;
+}
+.mock-search-icon { color: var(--text-light); font-size: 0.875rem; }
+.mock-search input {
+  border: none;
+  outline: none;
+  font-size: 0.9375rem;
+  color: var(--text-dark);
+  background: transparent;
+  width: 100%;
+  font-family: inherit;
+}
+.mock-search input::placeholder { color: var(--text-light); }
+
+/* ── Error ── */
+.mock-error {
+  font-size: 0.8125rem;
+  color: var(--error);
+  text-align: center;
+}

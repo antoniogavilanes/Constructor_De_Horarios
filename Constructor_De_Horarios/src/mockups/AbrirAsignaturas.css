@@ -1,0 +1,141 @@
+.aa-content {
+  padding: 40px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: 100%;
+}
+
+.aa-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.aa-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+}
+
+.aa-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.aa-filter-select {
+  width: 220px;
+}
+
+.aa-clear-btn {
+  font-size: 0.8125rem;
+  padding: 8px 14px;
+  color: var(--text-gray);
+}
+
+.aa-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.aa-grid-single {
+  grid-template-columns: 1fr;
+}
+
+.aa-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.aa-section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 4px;
+}
+
+.aa-grado-code {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--blue);
+  background: var(--blue-light);
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.aa-grado-name {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.aa-grado-count {
+  font-size: 0.8125rem;
+  color: var(--text-gray);
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.aa-codigo {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.aa-semestre {
+  font-size: 0.8125rem;
+  color: var(--text-gray);
+  white-space: nowrap;
+}
+
+/* Wrapper con altura fija y scroll */
+.aa-table-wrap {
+  max-height: 284px; /* header ~44px + 5 filas ~48px cada una */
+  overflow-y: auto;
+  border-radius: 8px;
+}
+
+.aa-table-wrap::-webkit-scrollbar {
+  width: 6px;
+}
+.aa-table-wrap::-webkit-scrollbar-track {
+  background: var(--gray-bg);
+  border-radius: 4px;
+}
+.aa-table-wrap::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+.aa-table-wrap::-webkit-scrollbar-thumb:hover {
+  background: var(--text-light);
+}
+
+/* Header sticky al hacer scroll */
+.aa-table-wrap .mock-table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--white);
+  z-index: 1;
+  box-shadow: 0 1px 0 var(--border);
+}
+
+/* Filas vacías */
+.aa-row-empty td {
+  height: 48px;
+  background: #fafafa;
+  border-bottom: 1px dashed var(--border) !important;
+}
+
+/* Más espacio en las celdas de estas tablas */
+.aa-section .mock-table th,
+.aa-section .mock-table td {
+  padding: 13px 20px;
+}

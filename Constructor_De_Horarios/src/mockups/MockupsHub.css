@@ -1,0 +1,59 @@
+.hub-page {
+  min-height: 100vh;
+  background: var(--gray-bg);
+  padding: 48px 40px;
+}
+
+.hub-header {
+  margin-bottom: 40px;
+}
+
+.hub-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+}
+
+.hub-subtitle {
+  font-size: 0.9375rem;
+  color: var(--text-gray);
+  margin-top: 4px;
+}
+
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.hub-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.hub-card:hover {
+  border-color: var(--blue);
+  box-shadow: 0 2px 8px rgba(26, 124, 193, 0.12);
+}
+
+.hub-card-cap {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.hub-card-label {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-dark);
+}
