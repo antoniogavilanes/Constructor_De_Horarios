@@ -35,11 +35,32 @@
   flex-shrink: 0;
 }
 
+.mock-navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+}
+.mock-navbar-brand:hover .mock-navbar-title {
+  color: var(--blue);
+}
+
+.mock-navbar-logo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+}
+
 .mock-navbar-title {
   font-size: 1rem;
   font-weight: 700;
   color: var(--navy);
   letter-spacing: -0.01em;
+  transition: color 0.15s;
 }
 
 /* ── Botones ── */

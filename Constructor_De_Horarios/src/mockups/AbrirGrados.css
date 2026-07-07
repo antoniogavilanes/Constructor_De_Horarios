@@ -1,0 +1,88 @@
+.ag-content {
+  padding: 40px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: 100%;
+}
+
+.ag-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ag-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+}
+
+.ag-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+/* ── Card ── */
+.ag-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.ag-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Banner de color con el código */
+.ag-card-banner {
+  padding: 32px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ag-codigo {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Cuerpo con nombre y acciones */
+.ag-card-body {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ag-nombre {
+  font-size: 0.875rem;
+  color: var(--text-gray);
+  line-height: 1.4;
+  flex: 1;
+}
+
+.ag-card-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* ── Empty state ── */
+.ag-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--text-gray);
+  font-size: 0.9375rem;
+  padding: 40px;
+}

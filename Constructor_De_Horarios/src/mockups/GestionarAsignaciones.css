@@ -1,109 +1,181 @@
 .ga-content {
-  padding: 32px 40px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  padding: 40px 56px;
+  display: flex;
+  flex-direction: column;
   gap: 24px;
-  max-width: 1100px;
   width: 100%;
-  margin: 0 auto;
-  align-items: start;
 }
 
-.ga-panel-header {
+/* ── Cabecera ── */
+.ga-header {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 16px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
-.ga-panel-title {
-  font-size: 1rem;
+.ga-title {
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--navy);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
-.ga-badge {
-  background: var(--gray-bg);
-  color: var(--text-gray);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  font-size: 0.75rem;
+.ga-stats {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ga-stat {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8125rem;
   font-weight: 600;
-  padding: 2px 8px;
+  padding: 5px 10px;
+  border-radius: 20px;
 }
 
-.ga-badge-ok {
-  background: #dcfce7;
-  color: #16a34a;
-  border-color: #bbf7d0;
+.ga-stat-ok   { background: #dcfce7; color: #16a34a; }
+.ga-stat-warn { background: #fef9c3; color: #a16207; }
+.ga-stat-pend { background: var(--gray-bg); color: var(--text-gray); border: 1px solid var(--border); }
+
+.ga-stat-total {
+  font-size: 0.8125rem;
+  color: var(--text-gray);
+  padding-left: 4px;
 }
 
-.ga-list {
+/* ── Filtros ── */
+.ga-filters {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
-.ga-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.ga-filter-select {
+  width: 210px;
 }
 
-.ga-card-top {
+.ga-clear-btn {
+  font-size: 0.8125rem;
+  padding: 8px 14px;
+  color: var(--text-gray);
+}
+
+/* ── Tabla ── */
+.ga-table-card { overflow: hidden; }
+
+.ga-asig-cell {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border);
 }
 
 .ga-codigo {
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--blue);
-  text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .ga-nombre {
   font-size: 0.9375rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--navy);
 }
 
-.ga-btn {
-  width: 100%;
+.ga-grado-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--blue);
+  background: var(--blue-light);
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+}
+
+.ga-sin-asignar {
+  font-size: 0.8125rem;
+  color: var(--text-light);
+  font-style: italic;
+}
+
+.ga-empty-cell { color: var(--text-light); }
+
+/* Estados */
+.ga-estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.ga-estado-completa  { background: #dcfce7; color: #16a34a; }
+.ga-estado-parcial   { background: #fef9c3; color: #a16207; }
+.ga-estado-pendiente { background: var(--gray-bg); color: var(--text-gray); border: 1px solid var(--border); }
+
+.ga-no-results {
+  text-align: center;
+  color: var(--text-gray);
+  padding: 40px !important;
+  font-size: 0.9375rem;
+}
+
+/* ── Modal ── */
+.ga-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  align-items: center;
   justify-content: center;
+  z-index: 100;
+}
+
+.ga-modal {
+  background: var(--white);
+  border-radius: 12px;
+  width: 420px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+.ga-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.ga-modal-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
   margin-top: 4px;
 }
 
-.ga-card-done {
-  border-color: #bbf7d0;
-  background: #f0fdf4;
-}
-
-.ga-done-row {
+.ga-modal-body {
+  padding: 20px 24px;
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ga-modal-footer {
+  display: flex;
+  justify-content: flex-end;
   gap: 10px;
-}
-
-.ga-check { color: #16a34a; flex-shrink: 0; margin-top: 2px; }
-
-.ga-done-title {
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--navy);
-}
-
-.ga-done-sub {
-  font-size: 0.8125rem;
-  color: var(--text-gray);
-  margin-top: 2px;
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+  background: var(--gray-bg);
 }

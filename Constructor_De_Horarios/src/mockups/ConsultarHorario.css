@@ -1,12 +1,31 @@
-.ch-content {
-  padding: 32px 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  flex: 1;
+/* Página fija al viewport */
+.ch-page {
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
-.ch-header {
+.ch-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* ── Zona fija ── */
+.ch-sticky {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px 28px 16px;
+  background: var(--gray-bg);
+  border-bottom: 1px solid var(--border);
+  z-index: 1;
+}
+
+.ch-top-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,89 +33,243 @@
 }
 
 .ch-title {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 700;
   color: var(--navy);
   letter-spacing: -0.02em;
-  white-space: nowrap;
 }
 
+.ch-print-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+}
+
+/* Tabs de modo */
+.ch-mode-tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--border);
+  padding: 3px;
+  border-radius: 8px;
+  width: fit-content;
+}
+
+.ch-mode-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-gray);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  font-family: inherit;
+}
+
+.ch-mode-tab:hover { background: rgba(255,255,255,0.6); color: var(--navy); }
+
+.ch-mode-tab-active {
+  background: white;
+  color: var(--navy);
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Filtros */
 .ch-filters {
   display: flex;
+  align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
-.ch-select {
-  width: 220px;
+.ch-select { width: 170px; }
+.ch-select-wide { width: 220px; }
+
+.ch-view-chip {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  letter-spacing: 0.03em;
 }
 
+/* ── Zona scrollable ── */
+.ch-body {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 28px 32px;
+  gap: 16px;
+}
+
+/* Empty state */
+.ch-empty-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 320px;
+  color: var(--text-light);
+}
+
+.ch-empty-icon { color: var(--border); }
+
+.ch-empty-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-gray);
+}
+
+.ch-empty-desc {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  text-align: center;
+}
+
+/* ── Grid ── */
 .ch-grid-wrap {
   overflow-x: auto;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  flex-shrink: 0;
 }
 
 .ch-grid {
   width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
+  min-width: 620px;
 }
 
-.ch-th-hora { width: 64px; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+.ch-th-hora {
+  min-width: 100px;
+  width: 100px;
+  padding: 10px 10px;
+  background: var(--gray-bg);
+  border-bottom: 3px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
 
 .ch-th-dia {
-  padding: 10px 8px;
+  padding: 10px 6px;
   text-align: center;
   font-size: 0.8125rem;
   font-weight: 700;
   color: var(--navy);
-  border-bottom: 1px solid var(--border);
+  letter-spacing: 0.02em;
   border-left: 1px solid var(--border);
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 
 .ch-td-hora {
-  padding: 6px 12px;
-  font-size: 0.75rem;
+  padding: 0 10px;
+  font-size: 0.625rem;
   font-weight: 600;
   color: var(--text-gray);
   border-bottom: 1px solid var(--border);
   white-space: nowrap;
+  background: var(--gray-bg);
+  text-align: right;
+  height: 48px;
+  vertical-align: middle;
+  letter-spacing: 0.01em;
 }
 
 .ch-cell {
-  padding: 4px;
+  padding: 3px;
   border-bottom: 1px solid var(--border);
   border-left: 1px solid var(--border);
-  height: 56px;
+  min-height: 48px;
+  height: auto;
   vertical-align: top;
 }
 
-.ch-cell-empty { background: #fafafa; }
-.ch-cell-filled { background: transparent; }
+.ch-cell-empty  { background: white; }
+.ch-cell-filled { background: white; }
 
-.ch-slot {
-  height: 100%;
-  border-radius: 5px;
-  padding: 4px 7px;
+tr:nth-child(even) .ch-cell-empty { background: #fafafa; }
+tr:nth-child(even) .ch-td-hora    { background: #f0f2f5; }
+
+.ch-cell-slots {
   display: flex;
   flex-direction: column;
-  gap: 1px;
-  opacity: 0.88;
+  gap: 2px;
+}
+
+/* Slot */
+.ch-slot {
+  border-radius: 5px;
+  padding: 4px 7px 4px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
 }
 
 .ch-slot-code {
-  font-size: 0.625rem;
-  font-weight: 700;
-  color: white;
+  font-size: 0.5625rem;
+  font-weight: 800;
+  color: rgba(255,255,255,0.8);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.07em;
+  line-height: 1;
 }
 
 .ch-slot-name {
-  font-size: 0.6875rem;
-  color: rgba(255,255,255,0.9);
-  line-height: 1.2;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+  line-height: 1.25;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .ch-slot-meta {
   font-size: 0.625rem;
-  color: rgba(255,255,255,0.75);
+  color: rgba(255,255,255,0.65);
+}
+
+/* Chips en modos profesor/aula */
+.ch-slot-chips {
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
   margin-top: 1px;
+}
+
+.ch-grado-chip {
+  font-size: 0.5rem;
+  font-weight: 700;
+  color: white;
+  padding: 1px 4px;
+  border-radius: 3px;
+  letter-spacing: 0.04em;
+}
+
+.ch-aula-chip {
+  font-size: 0.5rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: rgba(0,0,0,0.2);
+  letter-spacing: 0.03em;
 }
